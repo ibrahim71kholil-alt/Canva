@@ -1,4 +1,4 @@
-import { db, collection, getDocs, doc, updateDoc, query, orderBy } from "./firebase-config.js";
+import { db, collection, getDocs, doc, updateDoc } from "./firebase-config.js";
 
 const ordersList = document.getElementById("ordersList");
 const totalOrdersEl = document.getElementById("totalOrders");
@@ -6,9 +6,8 @@ const totalRevenueEl = document.getElementById("totalRevenue");
 
 async function fetchOrders() {
     try {
-        // ফায়ারবেস থেকে ডাটা আনা হচ্ছে
-        const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
-        const querySnapshot = await getDocs(q);
+        // কোনো ফিল্টার বা orderBy ছাড়াই সরাসরি ডাটা কল করছি
+        const querySnapshot = await getDocs(collection(db, "orders"));
         
         ordersList.innerHTML = "";
         let totalRev = 0;
@@ -28,10 +27,9 @@ async function fetchOrders() {
                 totalRev += Number(data.amount || 0);
             }
 
-            // টেবিলের রো তৈরি
             const row = `
                 <tr class="border-b border-gray-800 hover:bg-gray-800/50 transition">
-                    <td class="p-4">${data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString() : "N/A"}</td>
+                    <td class="p-4">${data.createdAt ? "Time Saved" : "N/A"}</td>
                     <td class="p-4 font-semibold">${data.name || "N/A"}</td>
                     <td class="p-4">${data.phone || "N/A"}</td>
                     <td class="p-4 font-mono text-[#00D4FF]">${data.transactionId || "N/A"}</td>
@@ -54,12 +52,12 @@ async function fetchOrders() {
         totalRevenueEl.innerText = `৳${totalRev}`;
 
     } catch (error) {
-        console.error("Error error error: ", error);
-        ordersList.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">Failed to load data! Console চেক করুন।</td></tr>`;
+        // মোবাইলে এররটি সরাসরি দেখার জন্য Alert দেওয়া হলো
+        alert("Error details: " + error.message);
+        ordersList.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">Failed to load data!</td></tr>`;
     }
 }
 
-// অর্ডার অ্যাপ্রুভ করা
 window.approveOrder = async (orderId) => {
     if(confirm("Are you sure you want to approve this order?")) {
         try {
@@ -68,11 +66,9 @@ window.approveOrder = async (orderId) => {
             alert("Order Approved!");
             fetchOrders(); 
         } catch (error) {
-            console.error("Error approving:", error);
-            alert("Approve করতে সমস্যা হয়েছে!");
+            alert("Approve Error: " + error.message);
         }
     }
 }
 
-// সরাসরি ফাংশন কল
 fetchOrders();
