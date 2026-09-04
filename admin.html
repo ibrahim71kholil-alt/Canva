@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Area | Canva Access</title>
+    <title>Admin Dashboard | Canva Access</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -44,7 +44,7 @@
                 <p id="totalRevenue" class="text-3xl font-bold text-[#00D4FF]">৳0</p>
             </div>
 
-            <!-- পেমেন্ট নাম্বার পরিবর্তনের বক্স -->
+            <!-- পেমেন্ট নাম্বার সেটিংস -->
             <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
                 <h3 class="text-gray-400 text-sm font-semibold mb-3">Payment Numbers Settings</h3>
                 <div class="space-y-2">
@@ -58,6 +58,7 @@
 
         <!-- Orders Table Section -->
         <div class="bg-[#05163a] rounded-2xl border border-[#00D4FF]/20 overflow-hidden">
+            <!-- Filters -->
             <div class="flex flex-col md:flex-row justify-between items-center p-6 border-b border-gray-700 gap-4">
                 <h2 class="text-xl font-bold">Manage Orders</h2>
                 <div class="flex flex-wrap gap-2">
@@ -76,9 +77,9 @@
                     <thead>
                         <tr class="bg-gray-900/50 text-gray-400 text-sm">
                             <th class="p-4">Date</th>
-                            <th class="p-4">Name</th>
-                            <th class="p-4">Phone</th>
-                            <th class="p-4">TrxID</th>
+                            <th class="p-4">Name & Phone</th>
+                            <th class="p-4">Choice (পছন্দ)</th>
+                            <th class="p-4">TrxID & Email</th>
                             <th class="p-4">Status</th>
                             <th class="p-4">Action</th>
                         </tr>
@@ -158,7 +159,7 @@
 
         logoutBtn.addEventListener("click", () => { signOut(auth); });
 
-        // ডাটাবেস থেকে পেমেন্ট নাম্বার লোড করা
+        // পেমেন্ট নাম্বার লোড করা
         async function loadPaymentNumbers() {
             try {
                 const docRef = doc(db, "settings", "payment_numbers");
@@ -172,7 +173,7 @@
             } catch (error) { console.error("Error loading numbers:", error); }
         }
 
-        // এডমিন প্যানেল থেকে নাম্বার সেভ/আপডেট করা
+        // পেমেন্ট নাম্বার সেভ করা
         saveNumbersBtn.addEventListener("click", async () => {
             try {
                 const bkash = bkashInput.value.trim();
@@ -214,7 +215,8 @@
                         transactionId: data.transactionId || "N/A",
                         amount: Number(data.amount || 0),
                         status: data.status || "pending",
-                        email: data.email || "N/A"
+                        email: data.email || "N/A",
+                        deliveryType: data.deliveryType || "Invite Link"
                     });
                 });
 
@@ -240,12 +242,16 @@
                 count++;
                 if(order.status === "approved") { totalRev += order.amount; }
 
+                const choiceBadge = order.deliveryType === "Direct Gmail" 
+                    ? `<span class="bg-purple-900 text-purple-300 px-2 py-1 rounded text-xs font-bold">Gmail Invite</span>` 
+                    : `<span class="bg-blue-900 text-blue-300 px-2 py-1 rounded text-xs font-bold">Invite Link</span>`;
+
                 const row = `
                     <tr class="border-b border-gray-800 hover:bg-gray-800/50 transition">
                         <td class="p-4">${order.displayDate}</td>
-                        <td class="p-4 font-semibold">${order.name}</td>
-                        <td class="p-4">${order.phone}</td>
-                        <td class="p-4 font-mono text-[#00D4FF]">${order.transactionId}</td>
+                        <td class="p-4"><strong>${order.name}</strong><br><small class="text-gray-400">${order.phone}</small></td>
+                        <td class="p-4">${choiceBadge}</td>
+                        <td class="p-4 font-mono text-xs"><span class="text-[#00D4FF]">${order.transactionId}</span><br><span class="text-gray-400">${order.email}</span></td>
                         <td class="p-4"><span class="px-2 py-1 rounded-full text-xs font-bold ${order.status === 'approved' ? 'bg-green-900 text-green-300' : 'bg-yellow-900 text-yellow-300'}">${order.status.toUpperCase()}</span></td>
                         <td class="p-4">${order.status === 'pending' ? `<button onclick="window.approveOrder('${order.id}')" class="bg-[#00D4FF] text-[#020024] px-3 py-1 rounded text-xs font-bold hover:bg-white transition">Approve</button>` : '<span class="text-gray-500 text-xs">Done</span>'}</td>
                     </tr>
