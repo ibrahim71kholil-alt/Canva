@@ -3,37 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Canva Access</title>
+    <title>Admin Dashboard | Canva Access</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Excel Export-এর জন্য SheetJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body class="bg-[#020024] text-white font-sans p-4 md:p-8">
 
     <div class="max-w-7xl mx-auto">
-        <h1 class="text-3xl font-bold text-[#00D4FF] mb-10">Admin Panel (Test Mode)</h1>
-        
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+            <h1 class="text-3xl font-bold text-[#00D4FF]">Admin Panel</h1>
+            <div class="flex gap-4">
+                <button id="exportBtn" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-semibold transition">
+                    Export to Excel
+                </button>
+                <a href="index.html" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg font-semibold border border-gray-600 transition">
+                    View Website
+                </a>
+            </div>
+        </header>
+
+        <!-- Top Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
+                <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Orders</h3>
+                <p id="totalOrders" class="text-3xl font-bold text-white">0</p>
+            </div>
+            <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
+                <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Revenue</h3>
+                <p id="totalRevenue" class="text-3xl font-bold text-[#00D4FF]">৳0</p>
+            </div>
+            <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20 flex flex-col justify-center">
+                <h3 class="text-gray-400 text-sm font-semibold mb-2">Update Canva Invite Link</h3>
+                <div class="flex gap-2">
+                    <input type="text" id="canvaLinkInput" placeholder="Paste new link here" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#00D4FF]">
+                    <button id="updateLinkBtn" class="bg-[#00D4FF] text-[#020024] px-4 py-2 rounded-lg font-bold text-sm">Update</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Table -->
         <div class="bg-[#05163a] rounded-2xl border border-[#00D4FF]/20 overflow-hidden">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <tr class="bg-gray-900/50 text-gray-400 text-sm">
-                        <th class="p-4">Name</th>
-                        <th class="p-4">Phone</th>
-                        <th class="p-4">TrxID</th>
-                        <th class="p-4">Amount</th>
-                    </tr>
-                </thead>
-                <tbody id="ordersList" class="text-sm">
-                    <tr><td colspan="4" class="p-4 text-center">Loading orders...</td></tr>
-                </tbody>
-            </table>
+            <div class="p-6 border-b border-gray-700">
+                <h2 class="text-xl font-bold">Recent Orders</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse" id="ordersTable">
+                    <thead>
+                        <tr class="bg-gray-900/50 text-gray-400 text-sm">
+                            <th class="p-4">Date</th>
+                            <th class="p-4">Name</th>
+                            <th class="p-4">Phone</th>
+                            <th class="p-4">TrxID</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersList" class="text-sm">
+                        <tr><td colspan="6" class="p-4 text-center text-gray-500">Loading orders...</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <!-- এখানেই ফায়ারবেস এবং এডমিন প্যানেলের সব কোড দেওয়া হলো -->
+    <!-- ফায়ারবেস কানেকশন এবং লজিক -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-        // আপনার ফায়ারবেস কনফিগারেশন
         const firebaseConfig = {
             apiKey: "AIzaSyAvWIeD84boXfT4fEJaNl8HJGXEbK9SVXw",
             authDomain: "canva-access.firebaseapp.com",
@@ -45,41 +84,104 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const ordersList = document.getElementById("ordersList");
 
-        async function loadOrders() {
+        const ordersList = document.getElementById("ordersList");
+        const totalOrdersEl = document.getElementById("totalOrders");
+        const totalRevenueEl = document.getElementById("totalRevenue");
+        let allOrdersData = [];
+
+        async function fetchOrders() {
             try {
-                const querySnapshot = await getDocs(collection(db, "orders"));
-                ordersList.innerHTML = "";
+                // লেটেস্ট অর্ডারগুলো আগে আনার জন্য orderBy
+                const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
                 
+                ordersList.innerHTML = "";
+                let totalRev = 0;
+                let count = 0;
+                allOrdersData = [];
+
                 if (querySnapshot.empty) {
-                    ordersList.innerHTML = '<tr><td colspan="4" class="p-4 text-center text-yellow-500">কোনো ডাটা পাওয়া যায়নি!</td></tr>';
+                    ordersList.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-400">কোনো অর্ডার পাওয়া যায়নি।</td></tr>';
                     return;
                 }
 
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    ordersList.innerHTML += `
-                        <tr class="border-b border-gray-800">
-                            <td class="p-4 font-bold">${data.name || 'N/A'}</td>
+                querySnapshot.forEach((document) => {
+                    const data = document.data();
+                    const id = document.id;
+                    count++;
+                    
+                    if(data.status === "approved") {
+                        totalRev += Number(data.amount || 0);
+                    }
+
+                    // এক্সেল এক্সপোর্টের জন্য ডাটা সেভ রাখা
+                    allOrdersData.push({
+                        Date: data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString() : "N/A",
+                        Name: data.name,
+                        Phone: data.phone,
+                        Email: data.email,
+                        TrxID: data.transactionId,
+                        Amount: data.amount,
+                        Status: data.status
+                    });
+
+                    // টেবিলে ডাটা দেখানো
+                    const row = `
+                        <tr class="border-b border-gray-800 hover:bg-gray-800/50 transition">
+                            <td class="p-4">${data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString() : "N/A"}</td>
+                            <td class="p-4 font-semibold">${data.name || 'N/A'}</td>
                             <td class="p-4">${data.phone || 'N/A'}</td>
-                            <td class="p-4 text-[#00D4FF]">${data.transactionId || 'N/A'}</td>
-                            <td class="p-4 font-bold text-green-400">৳${data.amount || '0'}</td>
+                            <td class="p-4 font-mono text-[#00D4FF]">${data.transactionId || 'N/A'}</td>
+                            <td class="p-4">
+                                <span class="px-2 py-1 rounded-full text-xs font-bold ${data.status === 'approved' ? 'bg-green-900 text-green-300' : 'bg-yellow-900 text-yellow-300'}">
+                                    ${data.status ? data.status.toUpperCase() : "PENDING"}
+                                </span>
+                            </td>
+                            <td class="p-4">
+                                ${data.status === 'pending' ? 
+                                    `<button onclick="window.approveOrder('${id}')" class="bg-[#00D4FF] text-[#020024] px-3 py-1 rounded text-xs font-bold hover:bg-white transition">Approve</button>` 
+                                    : '<span class="text-gray-500 text-xs">Done</span>'}
+                            </td>
                         </tr>
                     `;
+                    ordersList.innerHTML += row;
                 });
-                
-                // ডাটা আসলে স্ক্রিনে মেসেজ দিবে
-                alert("ডাটা সাকসেসফুলি চলে এসেছে!");
-                
+
+                totalOrdersEl.innerText = count;
+                totalRevenueEl.innerText = `৳${totalRev}`;
+
             } catch (error) {
-                // কোনো সমস্যা থাকলে কী সমস্যা তা স্ক্রিনে দেখাবে
-                alert("Error: " + error.message);
-                ordersList.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-red-500">${error.message}</td></tr>`;
+                console.error("Error fetching orders: ", error);
+                ordersList.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">ডাটা লোড করতে সমস্যা হয়েছে!</td></tr>`;
             }
         }
 
-        loadOrders();
+        // অর্ডার অ্যাপ্রুভ করা
+        window.approveOrder = async (orderId) => {
+            if(confirm("আপনি কি নিশ্চিত যে এই অর্ডারটি Approve করতে চান?")) {
+                try {
+                    const orderRef = doc(db, "orders", orderId);
+                    await updateDoc(orderRef, { status: "approved" });
+                    alert("Order Approved Successfully!");
+                    fetchOrders(); // টেবিল রিফ্রেশ
+                } catch (error) {
+                    alert("Error approving: " + error.message);
+                }
+            }
+        }
+
+        // এক্সেলে ডাটা এক্সপোর্ট
+        document.getElementById("exportBtn").addEventListener("click", () => {
+            if(allOrdersData.length === 0) return alert("Export করার মতো কোনো ডাটা নেই!");
+            const ws = XLSX.utils.json_to_sheet(allOrdersData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Orders");
+            XLSX.writeFile(wb, "Canva_Orders.xlsx");
+        });
+
+        // স্ক্রিপ্ট রান করা
+        fetchOrders();
     </script>
 </body>
 </html>
