@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Canva Access</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Excel Export-এর জন্য SheetJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body class="bg-[#020024] text-white font-sans p-4 md:p-8">
@@ -16,10 +15,10 @@
             <h1 class="text-3xl font-bold text-[#00D4FF]">Admin Panel</h1>
             <div class="flex gap-4">
                 <button id="exportBtn" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg font-semibold transition">
-                    Export to Excel
+                    Export Excel
                 </button>
                 <a href="index.html" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg font-semibold border border-gray-600 transition">
-                    View Website
+                    View Site
                 </a>
             </div>
         </header>
@@ -27,27 +26,41 @@
         <!-- Top Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
-                <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Orders</h3>
+                <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Orders (Filtered)</h3>
                 <p id="totalOrders" class="text-3xl font-bold text-white">0</p>
             </div>
             <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
-                <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Revenue</h3>
+                <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Revenue (Filtered)</h3>
                 <p id="totalRevenue" class="text-3xl font-bold text-[#00D4FF]">৳0</p>
             </div>
             <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20 flex flex-col justify-center">
                 <h3 class="text-gray-400 text-sm font-semibold mb-2">Update Canva Invite Link</h3>
                 <div class="flex gap-2">
-                    <input type="text" id="canvaLinkInput" placeholder="Paste new link here" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#00D4FF]">
+                    <input type="text" id="canvaLinkInput" placeholder="Paste new link" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#00D4FF]">
                     <button id="updateLinkBtn" class="bg-[#00D4FF] text-[#020024] px-4 py-2 rounded-lg font-bold text-sm">Update</button>
                 </div>
             </div>
         </div>
 
-        <!-- Orders Table -->
+        <!-- Orders Table Section -->
         <div class="bg-[#05163a] rounded-2xl border border-[#00D4FF]/20 overflow-hidden">
-            <div class="p-6 border-b border-gray-700">
-                <h2 class="text-xl font-bold">Recent Orders</h2>
+            
+            <!-- Filters -->
+            <div class="flex flex-col md:flex-row justify-between items-center p-6 border-b border-gray-700 gap-4">
+                <h2 class="text-xl font-bold">Manage Orders</h2>
+                <div class="flex flex-wrap gap-2">
+                    <select id="statusFilter" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#00D4FF]">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending Only</option>
+                        <option value="approved">Approved Only</option>
+                    </select>
+                    
+                    <input type="date" id="dateFilter" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-[#00D4FF]">
+                    
+                    <button id="clearFilterBtn" class="bg-red-900/50 text-red-300 px-4 py-2 rounded-lg text-sm font-bold hover:bg-red-900 transition">Clear Filters</button>
+                </div>
             </div>
+
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse" id="ordersTable">
                     <thead>
@@ -68,10 +81,10 @@
         </div>
     </div>
 
-    <!-- ফায়ারবেস কানেকশন এবং লজিক -->
+    <!-- Firebase & Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAvWIeD84boXfT4fEJaNl8HJGXEbK9SVXw",
@@ -85,20 +98,22 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        let allOrdersData = []; // সব ডাটা এখানে সেভ থাকবে
+        
+        // DOM Elements
         const ordersList = document.getElementById("ordersList");
         const totalOrdersEl = document.getElementById("totalOrders");
         const totalRevenueEl = document.getElementById("totalRevenue");
-        let allOrdersData = [];
+        const statusFilter = document.getElementById("statusFilter");
+        const dateFilter = document.getElementById("dateFilter");
+        const clearFilterBtn = document.getElementById("clearFilterBtn");
 
         async function fetchOrders() {
             try {
-                // লেটেস্ট অর্ডারগুলো আগে আনার জন্য orderBy
-                const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
+                // লেটেস্ট ২০০টি অর্ডার লোড করবে (যাতে সাইট ফাস্ট থাকে)
+                const q = query(collection(db, "orders"), orderBy("createdAt", "desc"), limit(200));
                 const querySnapshot = await getDocs(q);
                 
-                ordersList.innerHTML = "";
-                let totalRev = 0;
-                let count = 0;
                 allOrdersData = [];
 
                 if (querySnapshot.empty) {
@@ -108,79 +123,123 @@
 
                 querySnapshot.forEach((document) => {
                     const data = document.data();
-                    const id = document.id;
-                    count++;
                     
-                    if(data.status === "approved") {
-                        totalRev += Number(data.amount || 0);
-                    }
+                    // তারিখ ফরম্যাটিং (YYYY-MM-DD ফিল্টার করার জন্য এবং ডিসপ্লের জন্য)
+                    let dateObj = data.createdAt ? new Date(data.createdAt.toDate()) : null;
+                    let filterDate = dateObj ? dateObj.toLocaleDateString('en-CA') : ""; // Format: YYYY-MM-DD
+                    let displayDate = dateObj ? dateObj.toLocaleDateString() : "N/A";
 
-                    // এক্সেল এক্সপোর্টের জন্য ডাটা সেভ রাখা
                     allOrdersData.push({
-                        Date: data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString() : "N/A",
-                        Name: data.name,
-                        Phone: data.phone,
-                        Email: data.email,
-                        TrxID: data.transactionId,
-                        Amount: data.amount,
-                        Status: data.status
+                        id: document.id,
+                        filterDate: filterDate,
+                        displayDate: displayDate,
+                        name: data.name || "N/A",
+                        phone: data.phone || "N/A",
+                        transactionId: data.transactionId || "N/A",
+                        amount: Number(data.amount || 0),
+                        status: data.status || "pending",
+                        email: data.email || "N/A"
                     });
-
-                    // টেবিলে ডাটা দেখানো
-                    const row = `
-                        <tr class="border-b border-gray-800 hover:bg-gray-800/50 transition">
-                            <td class="p-4">${data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString() : "N/A"}</td>
-                            <td class="p-4 font-semibold">${data.name || 'N/A'}</td>
-                            <td class="p-4">${data.phone || 'N/A'}</td>
-                            <td class="p-4 font-mono text-[#00D4FF]">${data.transactionId || 'N/A'}</td>
-                            <td class="p-4">
-                                <span class="px-2 py-1 rounded-full text-xs font-bold ${data.status === 'approved' ? 'bg-green-900 text-green-300' : 'bg-yellow-900 text-yellow-300'}">
-                                    ${data.status ? data.status.toUpperCase() : "PENDING"}
-                                </span>
-                            </td>
-                            <td class="p-4">
-                                ${data.status === 'pending' ? 
-                                    `<button onclick="window.approveOrder('${id}')" class="bg-[#00D4FF] text-[#020024] px-3 py-1 rounded text-xs font-bold hover:bg-white transition">Approve</button>` 
-                                    : '<span class="text-gray-500 text-xs">Done</span>'}
-                            </td>
-                        </tr>
-                    `;
-                    ordersList.innerHTML += row;
                 });
 
-                totalOrdersEl.innerText = count;
-                totalRevenueEl.innerText = `৳${totalRev}`;
+                renderTable(allOrdersData);
 
             } catch (error) {
-                console.error("Error fetching orders: ", error);
-                ordersList.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">ডাটা লোড করতে সমস্যা হয়েছে!</td></tr>`;
+                ordersList.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">ডাটা লোড করতে সমস্যা হয়েছে! ${error.message}</td></tr>`;
             }
         }
 
-        // অর্ডার অ্যাপ্রুভ করা
+        // টেবিল রেন্ডার এবং ফিল্টার লজিক
+        function renderTable(dataArray) {
+            ordersList.innerHTML = "";
+            let totalRev = 0;
+            let count = 0;
+
+            if(dataArray.length === 0) {
+                ordersList.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-yellow-500">এই ফিল্টারে কোনো অর্ডার নেই।</td></tr>';
+                totalOrdersEl.innerText = 0;
+                totalRevenueEl.innerText = `৳0`;
+                return;
+            }
+
+            dataArray.forEach(order => {
+                count++;
+                if(order.status === "approved") {
+                    totalRev += order.amount;
+                }
+
+                const row = `
+                    <tr class="border-b border-gray-800 hover:bg-gray-800/50 transition">
+                        <td class="p-4">${order.displayDate}</td>
+                        <td class="p-4 font-semibold">${order.name}</td>
+                        <td class="p-4">${order.phone}</td>
+                        <td class="p-4 font-mono text-[#00D4FF]">${order.transactionId}</td>
+                        <td class="p-4">
+                            <span class="px-2 py-1 rounded-full text-xs font-bold ${order.status === 'approved' ? 'bg-green-900 text-green-300' : 'bg-yellow-900 text-yellow-300'}">
+                                ${order.status.toUpperCase()}
+                            </span>
+                        </td>
+                        <td class="p-4">
+                            ${order.status === 'pending' ? 
+                                `<button onclick="window.approveOrder('${order.id}')" class="bg-[#00D4FF] text-[#020024] px-3 py-1 rounded text-xs font-bold hover:bg-white transition">Approve</button>` 
+                                : '<span class="text-gray-500 text-xs">Done</span>'}
+                        </td>
+                    </tr>
+                `;
+                ordersList.innerHTML += row;
+            });
+
+            totalOrdersEl.innerText = count;
+            totalRevenueEl.innerText = `৳${totalRev}`;
+        }
+
+        // ফিল্টার অ্যাপ্লাই ফাংশন
+        function applyFilters() {
+            let filteredData = allOrdersData;
+            const selectedStatus = statusFilter.value;
+            const selectedDate = dateFilter.value;
+
+            if(selectedStatus !== "all") {
+                filteredData = filteredData.filter(order => order.status === selectedStatus);
+            }
+            if(selectedDate) {
+                filteredData = filteredData.filter(order => order.filterDate === selectedDate);
+            }
+
+            renderTable(filteredData);
+        }
+
+        // ইভেন্ট লিসেনার
+        statusFilter.addEventListener("change", applyFilters);
+        dateFilter.addEventListener("change", applyFilters);
+        
+        clearFilterBtn.addEventListener("click", () => {
+            statusFilter.value = "all";
+            dateFilter.value = "";
+            renderTable(allOrdersData);
+        });
+
         window.approveOrder = async (orderId) => {
-            if(confirm("আপনি কি নিশ্চিত যে এই অর্ডারটি Approve করতে চান?")) {
+            if(confirm("অর্ডারটি Approve করতে চান?")) {
                 try {
                     const orderRef = doc(db, "orders", orderId);
                     await updateDoc(orderRef, { status: "approved" });
-                    alert("Order Approved Successfully!");
-                    fetchOrders(); // টেবিল রিফ্রেশ
+                    alert("Approved!");
+                    fetchOrders(); 
                 } catch (error) {
-                    alert("Error approving: " + error.message);
+                    alert("Error: " + error.message);
                 }
             }
         }
 
-        // এক্সেলে ডাটা এক্সপোর্ট
         document.getElementById("exportBtn").addEventListener("click", () => {
-            if(allOrdersData.length === 0) return alert("Export করার মতো কোনো ডাটা নেই!");
+            if(allOrdersData.length === 0) return alert("Export করার মতো ডাটা নেই!");
             const ws = XLSX.utils.json_to_sheet(allOrdersData);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "Orders");
             XLSX.writeFile(wb, "Canva_Orders.xlsx");
         });
 
-        // স্ক্রিপ্ট রান করা
         fetchOrders();
     </script>
 </body>
