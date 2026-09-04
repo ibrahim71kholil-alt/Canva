@@ -271,13 +271,13 @@
         <div class="step">
           <div class="step-number">02</div>
           <h3>Complete payment</h3>
-          <p>Send ৳99 through bKash and submit your transaction ID.</p>
+          <p>Send money through bKash, Nagad or Rocket and submit your transaction ID.</p>
         </div>
 
         <div class="step">
           <div class="step-number">03</div>
           <h3>Start designing</h3>
-          <p>After verification, receive your access instructions.</p>
+          <p>After verification, receive your access or contact via WhatsApp.</p>
         </div>
 
       </div>
@@ -349,7 +349,7 @@
             <span>+</span>
           </button>
           <div class="faq-answer">
-            Click Get Access Now, select bKash,
+            Click Get Access Now, select payment method,
             send ৳99 and submit your transaction ID.
           </div>
         </div>
@@ -360,8 +360,7 @@
             <span>+</span>
           </button>
           <div class="faq-answer">
-            Currently bKash is available.
-            Nagad and Rocket will be added later.
+            bKash, Nagad and Rocket are available. Numbers can be found in checkout.
           </div>
         </div>
 
@@ -382,7 +381,7 @@
             <span>+</span>
           </button>
           <div class="faq-answer">
-            Contact us through WhatsApp or Facebook.
+            Contact us directly through WhatsApp or Facebook.
           </div>
         </div>
 
@@ -410,8 +409,8 @@
 
       <div class="footer-links">
 
-        <a href="https://wa.me/8801766269848" target="_blank">
-          WhatsApp
+        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20made%20a%20payment%20for%20Canva%20Access." target="_blank">
+          💬 Chat on WhatsApp
         </a>
 
         <a href="https://www.facebook.com/share/1D4vaUgp6V/"
@@ -454,63 +453,50 @@
       <div class="payment-methods">
 
         <button class="payment-method active" data-method="bkash">
-
           <span class="method-logo bkash-logo">bK</span>
-
           <span>
             <strong>bKash</strong>
-            <small>Available</small>
+            <small>Active</small>
           </span>
-
           <span class="check">✓</span>
-
         </button>
 
 
-        <button class="payment-method disabled" data-method="nagad">
-
+        <button class="payment-method" data-method="nagad">
           <span class="method-logo nagad-logo">N</span>
-
           <span>
             <strong>Nagad</strong>
-            <small>Coming soon</small>
+            <small>Active</small>
           </span>
-
-          <span>🔒</span>
-
         </button>
 
 
-        <button class="payment-method disabled" data-method="rocket">
-
+        <button class="payment-method" data-method="rocket">
           <span class="method-logo rocket-logo">R</span>
-
           <span>
             <strong>Rocket</strong>
-            <small>Coming soon</small>
+            <small>Active</small>
           </span>
-
-          <span>🔒</span>
-
         </button>
 
       </div>
 
 
-      <!-- BKASH INSTRUCTIONS -->
+      <!-- PAYMENT INSTRUCTIONS & LIVE NUMBERS -->
       <div class="bkash-instructions">
 
         <div class="instruction-title">
-          <span class="method-logo bkash-logo">bK</span>
-          <strong>bKash Payment</strong>
+          <span class="method-logo bkash-logo" id="activeMethodIcon">bK</span>
+          <strong id="activeMethodName">Payment Number</strong>
         </div>
 
-        <p>
-          Send Money to the following bKash number:
+        <p id="instructionText">
+          Send Money to the following number:
         </p>
 
         <div class="payment-number">
-          <strong>01869194019</strong>
+          <!-- ফায়ারবেস থেকে লাইভ নাম্বার আসার আইডি -->
+          <strong id="paymentNumberDisplay" class="text-[#00D4FF]">Loading...</strong>
           <button id="copyNumber">Copy</button>
         </div>
 
@@ -522,7 +508,7 @@
         <div class="payment-note">
           <strong>How to pay?</strong>
           <p>
-            Open your bKash app → Send Money →
+            Open your mobile banking app → Send Money →
             enter the number above → send ৳99 →
             copy your Transaction ID.
           </p>
@@ -535,61 +521,38 @@
       <form id="orderForm">
 
         <div class="form-group">
-
           <label>Your Name</label>
-
-          <input type="text"
-            id="customerName"
-            placeholder="Enter your name"
-            required>
-
+          <input type="text" id="customerName" placeholder="Enter your name" required>
         </div>
 
-
         <div class="form-group">
-
           <label>Phone Number</label>
-
-          <input type="tel"
-            id="customerPhone"
-            placeholder="01XXXXXXXXX"
-            required>
-
+          <input type="tel" id="customerPhone" placeholder="01XXXXXXXXX" required>
         </div>
 
-
         <div class="form-group">
-
           <label>Email Address</label>
-
-          <input type="email"
-            id="customerEmail"
-            placeholder="your@email.com"
-            required>
-
+          <input type="email" id="customerEmail" placeholder="your@email.com" required>
         </div>
-
 
         <div class="form-group">
-
-          <label>bKash Transaction ID</label>
-
-          <input type="text"
-            id="transactionId"
-            placeholder="Enter transaction ID"
-            required>
-
+          <label>Transaction ID</label>
+          <input type="text" id="transactionId" placeholder="Enter transaction ID" required>
         </div>
-
 
         <button class="submit-payment" type="submit">
-
-          Submit Payment
-          <span>↗</span>
-
+          Submit Payment <span>↗</span>
         </button>
 
       </form>
+
+
+      <!-- WHATSAPP SUPPORT IN MODAL -->
+      <div class="mt-4 text-center">
+        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20submitted%20my%20payment%20for%20Canva%20Access." target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl text-sm transition">
+          💬 পেমেন্ট করে WhatsApp-এ মেসেজ দিন
+        </a>
+      </div>
 
 
       <div class="secure-note">
@@ -615,10 +578,8 @@
       <p>Use your Google account to sign in.</p>
 
       <button class="google-btn" id="googleLogin">
-
         <span>G</span>
         Continue with Google
-
       </button>
 
       <div id="userInfo"></div>
@@ -631,6 +592,80 @@
   <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
+
+  <!-- ফায়ারবেস থেকে লাইভ পেমেন্ট নাম্বার লোড করার স্ক্রিপ্ট -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAvWIeD84boXfT4fEJaNl8HJGXEbK9SVXw",
+        authDomain: "canva-access.firebaseapp.com",
+        projectId: "canva-access",
+        storageBucket: "canva-access.firebasestorage.app",
+        messagingSenderId: "369166805582",
+        appId: "1:369166805582:web:77a82e0596479c5c89711f"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let paymentData = { bkash: "Loading...", nagad: "", rocket: "" };
+
+    async function loadLiveNumbers() {
+        try {
+            const docRef = doc(db, "settings", "payment_numbers");
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                paymentData = docSnap.data();
+                // ডিফল্টভাবে বিকাশ নাম্বার শো করাবে
+                document.getElementById("paymentNumberDisplay").innerText = paymentData.bkash || "Not Set";
+            }
+        } catch (error) {
+            console.error("Error loading numbers:", error);
+        }
+    }
+
+    loadLiveNumbers();
+
+    // পেমেন্ট মেথড সুইচ করার লজিক (বিকাশ, নগদ, রকেট ক্লিক করলে নাম্বার চেঞ্জ হবে)
+    const methods = document.querySelectorAll('.payment-method');
+    methods.forEach(btn => {
+        btn.addEventListener('click', () => {
+            methods.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const method = btn.getAttribute('data-method');
+            const displayEl = document.getElementById("paymentNumberDisplay");
+            const nameEl = document.getElementById("activeMethodName");
+            const iconEl = document.getElementById("activeMethodIcon");
+
+            if(method === 'bkash') {
+                displayEl.innerText = paymentData.bkash || "Not Set";
+                nameEl.innerText = "bKash Payment";
+                iconEl.innerText = "bK";
+                iconEl.className = "method-logo bkash-logo";
+            } else if(method === 'nagad') {
+                displayEl.innerText = paymentData.nagad || "Not Set";
+                nameEl.innerText = "Nagad Payment";
+                iconEl.innerText = "N";
+                iconEl.className = "method-logo nagad-logo";
+            } else if(method === 'rocket') {
+                displayEl.innerText = paymentData.rocket || "Not Set";
+                nameEl.innerText = "Rocket Payment";
+                iconEl.innerText = "R";
+                iconEl.className = "method-logo rocket-logo";
+            }
+        });
+    });
+
+    // কপি বাটন ফাংশনালিটি
+    document.getElementById("copyNumber").addEventListener("click", () => {
+        const numText = document.getElementById("paymentNumberDisplay").innerText;
+        navigator.clipboard.writeText(numText);
+        alert("Number copied: " + numText);
+    });
+  </script>
 
   <script type="module" src="script.js"></script>
 
