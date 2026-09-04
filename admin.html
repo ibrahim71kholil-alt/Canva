@@ -12,14 +12,11 @@
     <!-- লগইন স্ক্রিন -->
     <div id="loginScreen" class="flex items-center justify-center min-h-screen p-4">
         <div class="bg-[#05163a] p-8 rounded-2xl border border-[#00D4FF]/20 text-center max-w-sm w-full shadow-2xl">
-            <div class="w-16 h-16 bg-[#00D4FF]/10 text-[#00D4FF] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
-                🔒
-            </div>
+            <div class="w-16 h-16 bg-[#00D4FF]/10 text-[#00D4FF] rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">🔒</div>
             <h2 class="text-2xl font-bold text-white mb-2">Admin Portal</h2>
             <p class="text-gray-400 text-sm mb-8">Restricted Access Only</p>
-            
             <button id="adminLoginBtn" class="w-full bg-white text-gray-900 font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-3 hover:bg-gray-200 transition">
-                <svg class="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                <svg class="w-5 h-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
                 Continue with Google
             </button>
         </div>
@@ -36,6 +33,7 @@
             </div>
         </header>
 
+        <!-- Top Cards & Settings -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
                 <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Orders (Filtered)</h3>
@@ -45,15 +43,20 @@
                 <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Revenue (Filtered)</h3>
                 <p id="totalRevenue" class="text-3xl font-bold text-[#00D4FF]">৳0</p>
             </div>
-            <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20 flex flex-col justify-center">
-                <h3 class="text-gray-400 text-sm font-semibold mb-2">Update Canva Invite Link</h3>
-                <div class="flex gap-2">
-                    <input type="text" id="canvaLinkInput" placeholder="Paste new link" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#00D4FF]">
-                    <button id="updateLinkBtn" class="bg-[#00D4FF] text-[#020024] px-4 py-2 rounded-lg font-bold text-sm">Update</button>
+
+            <!-- পেমেন্ট নাম্বার পরিবর্তনের বক্স -->
+            <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
+                <h3 class="text-gray-400 text-sm font-semibold mb-3">Payment Numbers Settings</h3>
+                <div class="space-y-2">
+                    <input type="text" id="bkashInput" placeholder="Bkash Number" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-[#00D4FF]">
+                    <input type="text" id="nagadInput" placeholder="Nagad Number" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-[#00D4FF]">
+                    <input type="text" id="rocketInput" placeholder="Rocket Number" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-[#00D4FF]">
+                    <button id="saveNumbersBtn" class="w-full bg-[#00D4FF] text-[#020024] py-2 rounded-lg font-bold text-sm hover:bg-white transition mt-2">Update Numbers</button>
                 </div>
             </div>
         </div>
 
+        <!-- Orders Table Section -->
         <div class="bg-[#05163a] rounded-2xl border border-[#00D4FF]/20 overflow-hidden">
             <div class="flex flex-col md:flex-row justify-between items-center p-6 border-b border-gray-700 gap-4">
                 <h2 class="text-xl font-bold">Manage Orders</h2>
@@ -91,7 +94,7 @@
     <!-- Firebase & Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getFirestore, collection, getDocs, doc, updateDoc, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, getDoc, setDoc, updateDoc, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
         const firebaseConfig = {
@@ -108,15 +111,11 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        // ==========================================
-        // আপনার দেওয়া নতুন এডমিন জিমেইলগুলো
-        // ==========================================
         const ADMIN_EMAILS = [
-            "ibrahim71kholil@gmail.com", 
+            "Ibrahim71kholil@gmail.com", 
             "zubaermahmudshuvo@gmail.com"
         ]; 
 
-        // DOM Elements
         const loginScreen = document.getElementById("loginScreen");
         const dashboardContent = document.getElementById("dashboardContent");
         const adminLoginBtn = document.getElementById("adminLoginBtn");
@@ -129,16 +128,20 @@
         const dateFilter = document.getElementById("dateFilter");
         const clearFilterBtn = document.getElementById("clearFilterBtn");
 
+        const bkashInput = document.getElementById("bkashInput");
+        const nagadInput = document.getElementById("nagadInput");
+        const rocketInput = document.getElementById("rocketInput");
+        const saveNumbersBtn = document.getElementById("saveNumbersBtn");
+
         let allOrdersData = [];
 
-        // Authentication Check
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // চেক করবে যে লগইন করা জিমেইলটি লিস্টে আছে কি না
                 if (ADMIN_EMAILS.includes(user.email)) {
                     loginScreen.classList.add("hidden");
                     dashboardContent.classList.remove("hidden");
-                    fetchOrders(); 
+                    fetchOrders();
+                    loadPaymentNumbers();
                 } else {
                     alert("অ্যাক্সেস ডিনাইড! আপনি এডমিন নন।");
                     signOut(auth);
@@ -150,22 +153,45 @@
         });
 
         adminLoginBtn.addEventListener("click", async () => {
-            try {
-                await signInWithPopup(auth, provider);
-            } catch (error) {
-                alert("Login failed: " + error.message);
-            }
+            try { await signInWithPopup(auth, provider); } catch (error) { alert("Login failed: " + error.message); }
         });
 
-        logoutBtn.addEventListener("click", () => {
-            signOut(auth);
+        logoutBtn.addEventListener("click", () => { signOut(auth); });
+
+        // ডাটাবেস থেকে পেমেন্ট নাম্বার লোড করা
+        async function loadPaymentNumbers() {
+            try {
+                const docRef = doc(db, "settings", "payment_numbers");
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    bkashInput.value = data.bkash || "";
+                    nagadInput.value = data.nagad || "";
+                    rocketInput.value = data.rocket || "";
+                }
+            } catch (error) { console.error("Error loading numbers:", error); }
+        }
+
+        // এডমিন প্যানেল থেকে নাম্বার সেভ/আপডেট করা
+        saveNumbersBtn.addEventListener("click", async () => {
+            try {
+                const bkash = bkashInput.value.trim();
+                const nagad = nagadInput.value.trim();
+                const rocket = rocketInput.value.trim();
+
+                const docRef = doc(db, "settings", "payment_numbers");
+                await setDoc(docRef, { bkash, nagad, rocket }, { merge: true });
+                
+                alert("পেমেন্ট নাম্বার সফলভাবে আপডেট হয়েছে! ওয়েবসাইটে লাইভ হয়ে গেছে।");
+            } catch (error) {
+                alert("আপডেট করতে সমস্যা হয়েছে: " + error.message);
+            }
         });
 
         async function fetchOrders() {
             try {
                 const q = query(collection(db, "orders"), orderBy("createdAt", "desc"), limit(200));
                 const querySnapshot = await getDocs(q);
-                
                 allOrdersData = [];
 
                 if (querySnapshot.empty) {
@@ -193,7 +219,6 @@
                 });
 
                 renderTable(allOrdersData);
-
             } catch (error) {
                 ordersList.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-red-500">ডাটা লোড করতে সমস্যা হয়েছে!</td></tr>`;
             }
@@ -213,9 +238,7 @@
 
             dataArray.forEach(order => {
                 count++;
-                if(order.status === "approved") {
-                    totalRev += order.amount;
-                }
+                if(order.status === "approved") { totalRev += order.amount; }
 
                 const row = `
                     <tr class="border-b border-gray-800 hover:bg-gray-800/50 transition">
@@ -223,16 +246,8 @@
                         <td class="p-4 font-semibold">${order.name}</td>
                         <td class="p-4">${order.phone}</td>
                         <td class="p-4 font-mono text-[#00D4FF]">${order.transactionId}</td>
-                        <td class="p-4">
-                            <span class="px-2 py-1 rounded-full text-xs font-bold ${order.status === 'approved' ? 'bg-green-900 text-green-300' : 'bg-yellow-900 text-yellow-300'}">
-                                ${order.status.toUpperCase()}
-                            </span>
-                        </td>
-                        <td class="p-4">
-                            ${order.status === 'pending' ? 
-                                `<button onclick="window.approveOrder('${order.id}')" class="bg-[#00D4FF] text-[#020024] px-3 py-1 rounded text-xs font-bold hover:bg-white transition">Approve</button>` 
-                                : '<span class="text-gray-500 text-xs">Done</span>'}
-                        </td>
+                        <td class="p-4"><span class="px-2 py-1 rounded-full text-xs font-bold ${order.status === 'approved' ? 'bg-green-900 text-green-300' : 'bg-yellow-900 text-yellow-300'}">${order.status.toUpperCase()}</span></td>
+                        <td class="p-4">${order.status === 'pending' ? `<button onclick="window.approveOrder('${order.id}')" class="bg-[#00D4FF] text-[#020024] px-3 py-1 rounded text-xs font-bold hover:bg-white transition">Approve</button>` : '<span class="text-gray-500 text-xs">Done</span>'}</td>
                     </tr>
                 `;
                 ordersList.innerHTML += row;
@@ -244,23 +259,14 @@
 
         function applyFilters() {
             let filteredData = allOrdersData;
-            if(statusFilter.value !== "all") {
-                filteredData = filteredData.filter(order => order.status === statusFilter.value);
-            }
-            if(dateFilter.value) {
-                filteredData = filteredData.filter(order => order.filterDate === dateFilter.value);
-            }
+            if(statusFilter.value !== "all") { filteredData = filteredData.filter(order => order.status === statusFilter.value); }
+            if(dateFilter.value) { filteredData = filteredData.filter(order => order.filterDate === dateFilter.value); }
             renderTable(filteredData);
         }
 
         statusFilter.addEventListener("change", applyFilters);
         dateFilter.addEventListener("change", applyFilters);
-        
-        clearFilterBtn.addEventListener("click", () => {
-            statusFilter.value = "all";
-            dateFilter.value = "";
-            renderTable(allOrdersData);
-        });
+        clearFilterBtn.addEventListener("click", () => { statusFilter.value = "all"; dateFilter.value = ""; renderTable(allOrdersData); });
 
         window.approveOrder = async (orderId) => {
             if(confirm("অর্ডারটি Approve করতে চান?")) {
@@ -269,9 +275,7 @@
                     await updateDoc(orderRef, { status: "approved" });
                     alert("Approved!");
                     fetchOrders(); 
-                } catch (error) {
-                    alert("Error: " + error.message);
-                }
+                } catch (error) { alert("Error: " + error.message); }
             }
         }
 
