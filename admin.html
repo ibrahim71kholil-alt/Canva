@@ -33,32 +33,41 @@
             </div>
         </header>
 
-        <!-- Top Cards & Settings -->
+        <!-- Top Controls & Settings -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
-                <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Orders (Filtered)</h3>
+            <!-- Stats -->
+            <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20 flex flex-col justify-center">
+                <h3 class="text-gray-400 text-sm font-semibold mb-1">Total Orders</h3>
                 <p id="totalOrders" class="text-3xl font-bold text-white">0</p>
             </div>
-            <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
-                <h3 class="text-gray-400 text-sm font-semibold mb-2">Total Revenue (Filtered)</h3>
+            <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20 flex flex-col justify-center">
+                <h3 class="text-gray-400 text-sm font-semibold mb-1">Total Revenue</h3>
                 <p id="totalRevenue" class="text-3xl font-bold text-[#00D4FF]">৳0</p>
             </div>
 
-            <!-- পেমেন্ট নাম্বার সেটিংস -->
+            <!-- Canva Invite Link Update Box -->
             <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20">
-                <h3 class="text-gray-400 text-sm font-semibold mb-3">Payment Numbers Settings</h3>
-                <div class="space-y-2">
-                    <input type="text" id="bkashInput" placeholder="Bkash Number" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-[#00D4FF]">
-                    <input type="text" id="nagadInput" placeholder="Nagad Number" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-[#00D4FF]">
-                    <input type="text" id="rocketInput" placeholder="Rocket Number" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-[#00D4FF]">
-                    <button id="saveNumbersBtn" class="w-full bg-[#00D4FF] text-[#020024] py-2 rounded-lg font-bold text-sm hover:bg-white transition mt-2">Update Numbers</button>
+                <h3 class="text-gray-400 text-sm font-semibold mb-2">Canva Team Invite Link</h3>
+                <div class="flex gap-2">
+                    <input type="text" id="canvaLinkInput" placeholder="Paste Canva invite link here" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-[#00D4FF]">
+                    <button id="saveLinkBtn" class="bg-[#00D4FF] text-[#020024] px-4 py-2 rounded-lg font-bold text-sm hover:bg-white transition">Save</button>
                 </div>
             </div>
         </div>
 
+        <!-- Payment Numbers Settings Box -->
+        <div class="bg-[#05163a] p-6 rounded-2xl border border-[#00D4FF]/20 mb-10">
+            <h3 class="text-gray-400 text-sm font-semibold mb-3">Payment Numbers Settings</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="text" id="bkashInput" placeholder="Bkash Number" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#00D4FF]">
+                <input type="text" id="nagadInput" placeholder="Nagad Number" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#00D4FF]">
+                <input type="text" id="rocketInput" placeholder="Rocket Number" class="bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-[#00D4FF]">
+            </div>
+            <button id="saveNumbersBtn" class="mt-4 bg-[#00D4FF] text-[#020024] px-6 py-2 rounded-lg font-bold text-sm hover:bg-white transition">Update Payment Numbers</button>
+        </div>
+
         <!-- Orders Table Section -->
         <div class="bg-[#05163a] rounded-2xl border border-[#00D4FF]/20 overflow-hidden">
-            <!-- Filters -->
             <div class="flex flex-col md:flex-row justify-between items-center p-6 border-b border-gray-700 gap-4">
                 <h2 class="text-xl font-bold">Manage Orders</h2>
                 <div class="flex flex-wrap gap-2">
@@ -133,6 +142,9 @@
         const nagadInput = document.getElementById("nagadInput");
         const rocketInput = document.getElementById("rocketInput");
         const saveNumbersBtn = document.getElementById("saveNumbersBtn");
+        
+        const canvaLinkInput = document.getElementById("canvaLinkInput");
+        const saveLinkBtn = document.getElementById("saveLinkBtn");
 
         let allOrdersData = [];
 
@@ -142,7 +154,7 @@
                     loginScreen.classList.add("hidden");
                     dashboardContent.classList.remove("hidden");
                     fetchOrders();
-                    loadPaymentNumbers();
+                    loadSettings();
                 } else {
                     alert("অ্যাক্সেস ডিনাইড! আপনি এডমিন নন।");
                     signOut(auth);
@@ -159,8 +171,8 @@
 
         logoutBtn.addEventListener("click", () => { signOut(auth); });
 
-        // পেমেন্ট নাম্বার লোড করা
-        async function loadPaymentNumbers() {
+        // সেটিংস (পেমেন্ট নাম্বার ও ক্যানভা লিংক) লোড করা
+        async function loadSettings() {
             try {
                 const docRef = doc(db, "settings", "payment_numbers");
                 const docSnap = await getDoc(docRef);
@@ -169,24 +181,32 @@
                     bkashInput.value = data.bkash || "";
                     nagadInput.value = data.nagad || "";
                     rocketInput.value = data.rocket || "";
+                    canvaLinkInput.value = data.canvaLink || "";
                 }
-            } catch (error) { console.error("Error loading numbers:", error); }
+            } catch (error) { console.error("Error loading settings:", error); }
         }
 
         // পেমেন্ট নাম্বার সেভ করা
         saveNumbersBtn.addEventListener("click", async () => {
             try {
-                const bkash = bkashInput.value.trim();
-                const nagad = nagadInput.value.trim();
-                const rocket = rocketInput.value.trim();
-
                 const docRef = doc(db, "settings", "payment_numbers");
-                await setDoc(docRef, { bkash, nagad, rocket }, { merge: true });
-                
-                alert("পেমেন্ট নাম্বার সফলভাবে আপডেট হয়েছে! ওয়েবসাইটে লাইভ হয়ে গেছে।");
-            } catch (error) {
-                alert("আপডেট করতে সমস্যা হয়েছে: " + error.message);
-            }
+                await setDoc(docRef, { 
+                    bkash: bkashInput.value.trim(), 
+                    nagad: nagadInput.value.trim(), 
+                    rocket: rocketInput.value.trim() 
+                }, { merge: true });
+                alert("পেমেন্ট নাম্বার সফলভাবে আপডেট হয়েছে!");
+            } catch (error) { alert("Error: " + error.message); }
+        });
+
+        // ক্যানভা ইনভাইট লিংক সেভ করা
+        saveLinkBtn.addEventListener("click", async () => {
+            try {
+                const canvaLink = canvaLinkInput.value.trim();
+                const docRef = doc(db, "settings", "payment_numbers");
+                await setDoc(docRef, { canvaLink: canvaLink }, { merge: true });
+                alert("ক্যানভা ইনভাইট লিংক সফলভাবে সেভ হয়েছে!");
+            } catch (error) { alert("Error: " + error.message); }
         });
 
         async function fetchOrders() {
