@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>DesignPro Vault — Premium Design Access</title>
+  <title>Canva Access — Premium Design Access</title>
   <meta name="description" content="Get Canva Pro access at an affordable price.">
 
   <!-- AOS Animation CSS -->
@@ -16,97 +16,100 @@
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* Global White Theme Settings */
-    body { background-color: #ffffff !important; color: #333333 !important; font-family: 'Inter', 'Hind Siliguri', sans-serif; margin: 0; padding: 0; }
+    /* ==========================================
+       🌟 PURE WHITE & ULTRA CLEAN THEME 🌟
+       ========================================== -->
+    body { background-color: #ffffff !important; color: #1e293b !important; font-family: 'Inter', 'Hind Siliguri', sans-serif; margin: 0; padding: 0; }
     
-    /* Navbar */
-    .navbar { background-color: rgba(255, 255, 255, 0.98) !important; border-bottom: 1px solid #f0f0f0 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important; backdrop-filter: blur(10px); }
-    .navbar a { color: #555555 !important; font-weight: 600; }
+    /* Clean Navbar */
+    .navbar { background-color: #ffffff !important; border-bottom: 1px solid #e2e8f0 !important; box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+    .navbar nav { display: flex; gap: 20px; align-items: center; }
+    .navbar a { color: #475569 !important; font-weight: 500; text-decoration: none; font-size: 15px; transition: color 0.2s; }
     .navbar a:hover { color: #2563eb !important; }
-    .logo { color: #111111 !important; }
+    
+    /* 🌟 Premium Logo Styling 🌟 */
+    .logo { color: #0f172a !important; font-weight: 800; font-size: 20px; display: flex; align-items: center; gap: 10px; text-decoration: none; letter-spacing: -0.5px; }
+    .logo-badge { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 16px; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2); }
     .logo span { color: #2563eb !important; }
-    .login-btn { background: #2563eb !important; color: #ffffff !important; border: none !important; transition: all 0.3s ease; }
-    .login-btn:hover { background: #1d4ed8 !important; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
+
+    .login-btn { background: #2563eb !important; color: #ffffff !important; border: none !important; padding: 8px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .login-btn:hover { background: #1d4ed8 !important; }
     
     /* Typography */
-    h1, h2, h3, h4 { color: #111111 !important; }
-    p, span:not(.check):not(.logo-icon), small { color: #555555 !important; }
+    h1, h2, h3, h4 { color: #0f172a !important; }
+    p, span:not(.check):not(.logo-badge), small { color: #64748b !important; }
     
-    /* Cards & Containers */
+    /* Cards & Containers (Simple & Flat White) */
     .promo-card, .feature-card, .step, .pricing-card, .faq-item {
       background: #ffffff !important;
-      border: 1px solid #eaeaea !important;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04) !important;
-      border-radius: 16px !important;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02) !important;
+      border-radius: 12px !important;
+      transition: all 0.2s ease;
     }
     .promo-card:hover, .feature-card:hover, .step:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
     }
     
     /* Buttons */
-    .primary-btn { background: #2563eb !important; color: #ffffff !important; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important; transition: all 0.3s ease; border: none; cursor: pointer; }
-    .primary-btn:hover { background: #1d4ed8 !important; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4) !important; }
-    .secondary-btn { background: #ffffff !important; color: #111111 !important; border: 1px solid #cccccc !important; transition: all 0.3s ease; }
-    .secondary-btn:hover { background: #f8f9fa !important; border-color: #999999 !important; }
+    .primary-btn { background: #2563eb !important; color: #ffffff !important; box-shadow: none !important; transition: background 0.2s; border: none; cursor: pointer; }
+    .primary-btn:hover { background: #1d4ed8 !important; }
+    .secondary-btn { background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important; }
+    .secondary-btn:hover { background: #f8fafc !important; }
     
-    /* Modal Theme */
-    .modal-overlay { background: rgba(0, 0, 0, 0.5) !important; backdrop-filter: blur(5px); }
-    .payment-modal, .login-modal { background: #ffffff !important; border: none !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3) !important; border-radius: 20px; padding: 25px; max-width: 450px; margin: auto; }
-    .modal-header h2 { color: #111111 !important; margin-bottom: 5px; }
+    /* Modals */
+    .modal-overlay { background: rgba(15, 23, 42, 0.4) !important; backdrop-filter: blur(2px); }
+    .payment-modal, .login-modal { background: #ffffff !important; border: 1px solid #e2e8f0 !important; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1) !important; border-radius: 16px; padding: 25px; max-width: 450px; margin: auto; }
     
     /* Form & Payment Elements */
-    .payment-method { background: #ffffff !important; border: 1px solid #dddddd !important; color: #333333 !important; transition: all 0.2s ease; border-radius: 8px; padding: 10px; cursor: pointer; }
-    .payment-method:hover { border-color: #2563eb !important; }
-    .payment-method.active { border-color: #2563eb !important; background: #f0f7ff !important; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1); }
-    .payment-method strong { color: #111111 !important; }
+    .payment-method { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; color: #1e293b !important; border-radius: 8px; padding: 10px; cursor: pointer; }
+    .payment-method.active { border-color: #2563eb !important; background: #eff6ff !important; }
+    .payment-method strong { color: #0f172a !important; }
     
-    .bkash-instructions { background: #fafafa !important; border: 1px solid #eeeeee !important; border-radius: 12px; padding: 15px; margin-top: 15px; }
-    .payment-number { background: #ffffff !important; border: 1.5px dashed #bbbbbb !important; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .payment-number strong { color: #2563eb !important; font-size: 1.2rem; }
+    .bkash-instructions { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; border-radius: 10px; padding: 15px; margin-top: 15px; }
+    .payment-number { background: #ffffff !important; border: 1px dashed #cbd5e1 !important; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+    .payment-number strong { color: #2563eb !important; font-size: 1.1rem; }
     
-    .form-group { margin-top: 15px; text-align: left; }
-    .form-group label { color: #444444 !important; font-weight: 600; display: block; margin-bottom: 5px; font-size: 14px; }
+    .form-group { margin-top: 12px; text-align: left; }
+    .form-group label { color: #475569 !important; font-weight: 600; display: block; margin-bottom: 5px; font-size: 13px; }
     .form-group input, .form-group select {
-      background: #ffffff !important;
-      border: 1px solid #cccccc !important;
-      color: #111111 !important;
-      transition: border 0.3s ease;
+      background: #f8fafc !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #0f172a !important;
       width: 100%;
       padding: 10px;
       border-radius: 8px;
     }
-    .form-group input:focus, .form-group select:focus { border-color: #2563eb !important; box-shadow: 0 0 0 3px rgba(37,99,235,0.1) !important; outline: none; }
+    .form-group input:focus, .form-group select:focus { border-color: #2563eb !important; outline: none; background: #ffffff !important; }
     
     /* Footer */
-    .footer { border-top: 1px solid #eeeeee !important; background: #fafafa !important; }
+    .footer { border-top: 1px solid #e2e8f0 !important; background: #f8fafc !important; }
     
     /* Language Toggle Button */
     #langToggle {
-        background: #ffffff;
-        color: #111111;
-        border: 1px solid #cccccc;
-        padding: 8px 16px;
+        background: #f8fafc;
+        color: #0f172a;
+        border: 1px solid #cbd5e1;
+        padding: 6px 12px;
         border-radius: 8px;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.2s ease;
         font-size: 14px;
         font-family: 'Hind Siliguri', sans-serif;
     }
-    #langToggle:hover { background: #f0f0f0; border-color: #999999; }
-    .nav-actions { display: flex; align-items: center; gap: 15px; }
+    #langToggle:hover { background: #f1f5f9; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
   </style>
 </head>
 
 <body>
 
   <!-- NAVBAR -->
-  <header class="navbar" data-aos="fade-down" data-aos-duration="600">
+  <header class="navbar" data-aos="fade-down" data-aos-duration="500">
     <a href="#" class="logo">
-      <span class="logo-icon">✦</span>
-      Canva<span data-bn="অ্যাক্সেস">Access</span>
+      <div class="logo-badge">✦</div>
+      Canva <span data-bn="অ্যাক্সেস">Access</span>
     </a>
     <nav>
       <a href="#features" data-bn="ফিচারসমূহ">Features</a>
@@ -114,7 +117,7 @@
       <a href="#faq" data-bn="সাধারণ জিজ্ঞাসা">FAQ</a>
     </nav>
     <div class="nav-actions">
-      <!-- Custom Language Toggle -->
+      <!-- Language Toggle -->
       <button id="langToggle">🌐 বাংলা</button>
       <!-- Login Button -->
       <button class="login-btn" id="loginBtn" data-bn="লগইন">Login</button>
@@ -124,7 +127,7 @@
   <!-- HERO -->
   <main>
     <section class="hero">
-      <div class="hero-content" data-aos="fade-right" data-aos-duration="800">
+      <div class="hero-content" data-aos="fade-up" data-aos-duration="700">
         <div class="badge" data-bn="<span class='pulse'></span> প্রিমিয়াম ডিজাইন অ্যাক্সেস">
           <span class="pulse"></span> Premium Design Access
         </div>
@@ -133,8 +136,8 @@
           Unlock a world of premium design tools, templates and creative possibilities.
         </p>
         <div class="hero-buttons">
-          <button class="primary-btn" id="buyBtn" data-bn="এখনই অ্যাক্সেস নিন <span>↗</span>">Get Access Now <span>↗</span></button>
-          <a href="#how" class="secondary-btn" data-bn="কীভাবে কাজ করে <span>↓</span>">How it works <span>↓</span></a>
+          <button class="primary-btn" id="buyBtn" data-bn="এখনই অ্যাক্সেস নিন <span>↗</span>" style="padding: 12px 24px; border-radius: 8px; font-weight: 600;">Get Access Now <span>↗</span></button>
+          <a href="#how" class="secondary-btn" data-bn="কীভাবে কাজ করে <span>↓</span>" style="padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center;">How it works <span>↓</span></a>
         </div>
       </div>
     </section>
@@ -146,22 +149,22 @@
         <h2 data-bn="ডিজাইন করার<br><span style='color:#2563eb !important;'>সবকিছু এখানেই।</span>">Everything you need<br><span style="color:#2563eb !important;">to create.</span></h2>
       </div>
       <div class="features-grid">
-        <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
           <div class="feature-icon" style="color:#2563eb !important;">✦</div>
           <h3 data-bn="প্রিমিয়াম টেমপ্লেট">Premium Templates</h3>
           <p data-bn="প্রফেশনাল ডিজাইনারদের তৈরি হাজারো প্রিমিয়াম টেমপ্লেট ব্যবহার করুন।">Explore a wide range of professionally designed templates.</p>
         </div>
-        <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
           <div class="feature-icon" style="color:#2563eb !important;">◈</div>
           <h3 data-bn="ব্যাকগ্রাউন্ড রিমুভার">Background Remover</h3>
           <p data-bn="এক ক্লিকেই যেকোনো ছবির ব্যাকগ্রাউন্ড রিমুভ করুন।">Remove image backgrounds with powerful design tools.</p>
         </div>
-        <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
           <div class="feature-icon" style="color:#2563eb !important;">✧</div>
           <h3 data-bn="ম্যাজিক ডিজাইন">Magic Design</h3>
           <p data-bn="এআই (AI) টুলস ব্যবহার করে দ্রুত সুন্দর ডিজাইন তৈরি করুন।">Create beautiful designs faster with smart creative tools.</p>
         </div>
-        <div class="feature-card" data-aos="zoom-in" data-aos-delay="400">
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
           <div class="feature-icon" style="color:#2563eb !important;">↗</div>
           <h3 data-bn="প্রিমিয়াম অ্যাসেট">Premium Assets</h3>
           <p data-bn="আপনার প্রজেক্টের জন্য প্রিমিয়াম ছবি, ফন্ট ও ভিডিও অ্যাক্সেস করুন।">Access creative resources for your projects.</p>
@@ -177,17 +180,17 @@
       </div>
       <div class="steps-grid">
         <div class="step" data-aos="fade-up" data-aos-delay="100">
-          <div class="step-number" style="background:#f0f7ff; color:#2563eb;">01</div>
+          <div class="step-number" style="background:#eff6ff; color:#2563eb; width:35px; height:35px; display:flex; align-items:center; justify-content:center; border-radius:8px; font-weight:700;">01</div>
           <h3 data-bn="অ্যাক্সেস বেছে নিন">Choose your access</h3>
           <p data-bn="আপনার পছন্দের প্ল্যান সিলেক্ট করে 'Get Access Now' এ ক্লিক করুন।">Select the plan and click Get Access Now.</p>
         </div>
         <div class="step" data-aos="fade-up" data-aos-delay="200">
-          <div class="step-number" style="background:#f0f7ff; color:#2563eb;">02</div>
+          <div class="step-number" style="background:#eff6ff; color:#2563eb; width:35px; height:35px; display:flex; align-items:center; justify-content:center; border-radius:8px; font-weight:700;">02</div>
           <h3 data-bn="পেমেন্ট সম্পন্ন করুন">Complete payment</h3>
           <p data-bn="বিকাশ, নগদ বা রকেটের মাধ্যমে পেমেন্ট করে ট্রানজেকশন আইডি দিন।">Send money through bKash, Nagad or Rocket and submit your transaction ID.</p>
         </div>
         <div class="step" data-aos="fade-up" data-aos-delay="300">
-          <div class="step-number" style="background:#f0f7ff; color:#2563eb;">03</div>
+          <div class="step-number" style="background:#eff6ff; color:#2563eb; width:35px; height:35px; display:flex; align-items:center; justify-content:center; border-radius:8px; font-weight:700;">03</div>
           <h3 data-bn="ডিজাইন শুরু করুন">Start designing</h3>
           <p data-bn="অর্ডার ভেরিফাই হওয়ার পর আপনার ড্যাশবোর্ডে লিংক পেয়ে যাবেন।">After verification, receive your access or contact via WhatsApp.</p>
         </div>
@@ -195,52 +198,56 @@
     </section>
 
     <!-- PRICING -->
-    <section class="section pricing-section" data-aos="zoom-in-up">
-      <div class="pricing-card">
+    <section class="section pricing-section" data-aos="fade-up">
+      <div class="pricing-card" style="display:flex; justify-content:space-between; align-items:center; padding:40px; flex-wrap:wrap; gap:20px;">
         <div class="pricing-info">
           <span class="eyebrow" style="color:#2563eb !important; font-weight: 700;" data-bn="সীমিত অফার">LIMITED OFFER</span>
           <h2 data-bn="কম খরচে<br>প্রিমিয়াম অ্যাক্সেস।">Premium access<br>for less.</h2>
+          <p data-bn="এক বছরের জন্য ফুল প্রিমিয়াম এক্সেস পান সাশ্রয়ী মূল্যে।" style="margin:0;">Get full premium creative tools access at an affordable price.</p>
         </div>
-        <div class="price-box" style="background:#f8fafc; border: 1px solid #eaeaea;">
-          <small data-bn="১ বছরের অ্যাক্সেস">1 YEAR ACCESS</small>
-          <div class="price"><span>৳</span>99</div>
-          <div class="old-price" data-bn="রেগুলার প্রাইস <del>৳৫০০</del>">Regular price <del>500</del></div>
-          <button class="primary-btn" id="priceBuyBtn" data-bn="এখনই অ্যাক্সেস নিন <span>↗</span>">Get Access Now <span>↗</span></button>
+        <div class="price-box" style="background:#f8fafc; border: 1px solid #e2e8f0; padding:25px; border-radius:12px; text-align:center; min-width:220px;">
+          <small data-bn="১ বছরের অ্যাক্সেস" style="color:#64748b; font-weight:600;">1 YEAR ACCESS</small>
+          <div class="price" style="font-size:32px; font-weight:800; color:#0f172a; margin:10px 0;"><span>৳</span>99</div>
+          <div class="old-price" data-bn="রেগুলার প্রাইস <del>৳৫০০</del>" style="font-size:13px; color:#94a3b8; margin-bottom:15px;">Regular price <del>৳500</del></div>
+          <button class="primary-btn" id="priceBuyBtn" data-bn="এখনই অ্যাক্সেস নিন <span>↗</span>" style="width:100%; padding:10px; border-radius:8px; font-weight:600;">Get Access Now <span>↗</span></button>
         </div>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer">
+    <footer class="footer" style="padding:40px 5%; margin-top:60px;">
       <div class="footer-brand">
-        <a href="#" class="logo"><span class="logo-icon">✦</span> Canva<span>Access</span></a>
-        <p data-bn="সৃজনশীলতার এক নতুন দুনিয়া।">Simple access to creative possibilities.</p>
+        <a href="#" class="logo" style="font-size:18px;">
+          <div class="logo-badge" style="width:26px; height:26px; font-size:14px;">✦</div>
+          Canva <span>Access</span>
+        </a>
+        <p data-bn="সৃজনশীলতার এক নতুন দুনিয়া।" style="font-size:14px; margin-top:5px;">Simple access to creative possibilities.</p>
       </div>
-      <div class="footer-links">
-        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20made%20a%20payment%20for%20Canva%20Access." target="_blank" data-bn="💬 হোয়াটসঅ্যাপ চ্যাট">💬 Chat on WhatsApp</a>
-        <a href="https://www.facebook.com/share/1D4vaUgp6V/" target="_blank">Facebook</a>
+      <div class="footer-links" style="margin:20px 0; display:flex; gap:20px;">
+        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20made%20a%20payment%20for%20Canva%20Access." target="_blank" data-bn="💬 হোয়াটসঅ্যাপ চ্যাট" style="color:#2563eb; text-decoration:none; font-weight:500;">💬 Chat on WhatsApp</a>
+        <a href="https://www.facebook.com/share/1D4vaUgp6V/" target="_blank" style="color:#475569; text-decoration:none; font-weight:500;">Facebook</a>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 CanvaAccess</span>
+      <div class="footer-bottom" style="display:flex; justify-content:space-between; font-size:13px; border-top:1px solid #e2e8f0; padding-top:20px; color:#94a3b8;">
+        <span>© 2026 Canva Access</span>
         <span data-bn="ক্রিয়েটরদের জন্য তৈরি ✦">Made for creators ✦</span>
       </div>
     </footer>
   </main>
 
 
-  <!-- 🌟 LOGIN MODAL (এই অংশটুকু আগের কোডে বাদ পড়েছিল) 🌟 -->
-  <div class="modal-overlay" id="loginModal">
-    <div class="login-modal">
-      <button class="close-modal" id="closeLogin" style="color:#111; font-size: 28px; background:none; border:none; cursor:pointer; position:absolute; right:15px; top:15px;">×</button>
+  <!-- LOGIN MODAL -->
+  <div class="modal-overlay" id="loginModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; justify-content:center; align-items:center; z-index:2000;">
+    <div class="login-modal" style="position:relative;">
+      <button class="close-modal" id="closeLogin" style="color:#111; font-size: 24px; background:none; border:none; cursor:pointer; position:absolute; right:15px; top:15px;">×</button>
       
       <div class="modal-header" style="text-align: center; margin-bottom: 20px;">
         <span class="eyebrow" style="color:#2563eb !important; font-weight:700; display:block; margin-bottom:5px;" data-bn="স্বাগতম">WELCOME BACK</span>
-        <h2 data-bn="লগইন করুন।">Sign in to continue.</h2>
-        <p style="color:#64748b; font-size:14px;" data-bn="চালিয়ে যেতে আপনার গুগল একাউন্ট ব্যবহার করুন।">Use your Google account to sign in.</p>
+        <h2 data-bn="লগইন করুন।" style="margin:0 0 5px 0;">Sign in to continue.</h2>
+        <p style="color:#64748b; font-size:14px; margin:0;" data-bn="চালিয়ে যেতে আপনার গুগল একাউন্ট ব্যবহার করুন।">Use your Google account to sign in.</p>
       </div>
 
-      <button class="primary-btn" id="googleLogin" style="width:100%; padding:14px; font-size:16px; border-radius:8px; font-weight:bold; display:flex; justify-content:center; align-items:center; gap:10px;">
-        <span style="background:#fff; color:#2563eb; padding:2px 8px; border-radius:4px; font-weight:bold;">G</span> 
+      <button class="primary-btn" id="googleLogin" style="width:100%; padding:12px; font-size:15px; border-radius:8px; font-weight:600; display:flex; justify-content:center; align-items:center; gap:10px;">
+        <span style="background:#ffffff; color:#2563eb; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:12px;">G</span> 
         <span data-bn="গুগল দিয়ে লগইন করুন">Continue with Google</span>
       </button>
 
@@ -250,46 +257,42 @@
 
 
   <!-- PAYMENT MODAL -->
-  <div class="modal-overlay" id="paymentModal">
-    <div class="payment-modal" style="max-height: 90vh; overflow-y: auto;">
-      <button class="close-modal" id="closeModal" style="color:#111; font-size: 28px; background:none; border:none; cursor:pointer; position:absolute; right:15px; top:15px;">×</button>
+  <div class="modal-overlay" id="paymentModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; justify-content:center; align-items:center; z-index:2000;">
+    <div class="payment-modal" style="max-height: 90vh; overflow-y: auto; position:relative;">
+      <button class="close-modal" id="closeModal" style="color:#111; font-size: 24px; background:none; border:none; cursor:pointer; position:absolute; right:15px; top:15px;">×</button>
       
       <div class="modal-header" style="margin-bottom: 15px;">
         <span class="eyebrow" style="color:#2563eb !important; font-weight:700; display:block; margin-bottom:5px;" data-bn="নিরাপদ চেকআউট">SECURE CHECKOUT</span>
-        <h2 data-bn="অ্যাক্সেস বুঝে নিন।">Get your access.</h2>
-        <p style="color:#64748b; font-size: 14px;" data-bn="চালিয়ে যেতে পেমেন্ট সম্পন্ন করুন।">Complete your payment to continue.</p>
+        <h2 data-bn="অ্যাক্সেস বুঝে নিন।" style="margin:0 0 5px 0;">Get your access.</h2>
+        <p style="color:#64748b; font-size: 13px; margin:0;" data-bn="চালিয়ে যেতে পেমেন্ট সম্পন্ন করুন।">Complete your payment to continue.</p>
       </div>
 
       <!-- PAYMENT METHODS -->
       <div class="payment-methods" style="display:flex; gap:10px; margin-bottom:15px;">
-        <button class="payment-method active" data-method="bkash" style="flex:1;">
-          <span class="method-logo bkash-logo">bK</span>
+        <button class="payment-method active" data-method="bkash" style="flex:1; display:flex; align-items:center; justify-content:center; gap:5px; padding:8px; border-radius:8px; border:1px solid #cbd5e1; background:#fff; cursor:pointer;">
           <span><strong>bKash</strong></span>
         </button>
-        <button class="payment-method" data-method="nagad" style="flex:1;">
-          <span class="method-logo nagad-logo">N</span>
+        <button class="payment-method" data-method="nagad" style="flex:1; display:flex; align-items:center; justify-content:center; gap:5px; padding:8px; border-radius:8px; border:1px solid #cbd5e1; background:#fff; cursor:pointer;">
           <span><strong>Nagad</strong></span>
         </button>
-        <button class="payment-method" data-method="rocket" style="flex:1;">
-          <span class="method-logo rocket-logo">R</span>
+        <button class="payment-method" data-method="rocket" style="flex:1; display:flex; align-items:center; justify-content:center; gap:5px; padding:8px; border-radius:8px; border:1px solid #cbd5e1; background:#fff; cursor:pointer;">
           <span><strong>Rocket</strong></span>
         </button>
       </div>
 
       <!-- PAYMENT INSTRUCTIONS -->
       <div class="bkash-instructions">
-        <div class="instruction-title" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-          <span class="method-logo bkash-logo" id="activeMethodIcon">bK</span>
-          <strong id="activeMethodName" data-bn="পেমেন্ট নাম্বার">Payment Number</strong>
+        <div class="instruction-title" style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+          <strong id="activeMethodName" data-bn="পেমেন্ট নাম্বার" style="font-size:14px; color:#0f172a;">bKash Payment</strong>
         </div>
-        <p style="font-size:14px; margin-bottom:10px;" data-bn="নিচের নাম্বারে সেন্ড মানি (Send Money) করুন:">Send Money to the following number:</p>
+        <p style="font-size:13px; margin:0 0 8px 0; color:#64748b;" data-bn="নিচের নাম্বারে সেন্ড মানি (Send Money) করুন:">Send Money to the following number:</p>
         <div class="payment-number">
           <strong id="paymentNumberDisplay">Loading...</strong>
-          <button id="copyNumber" style="background:#f0f7ff; color:#2563eb; border:none; padding:5px 12px; border-radius:6px; font-weight:bold; cursor:pointer;" data-bn="কপি">Copy</button>
+          <button id="copyNumber" style="background:#eff6ff; color:#2563eb; border:none; padding:5px 12px; border-radius:6px; font-weight:600; cursor:pointer; font-size:13px;" data-bn="কপি">Copy</button>
         </div>
-        <div class="payment-amount" style="display:flex; justify-content:space-between; margin-top:10px; font-size:14px;">
-          <span data-bn="পেমেন্টের পরিমাণ">Payment Amount</span>
-          <strong>৳99</strong>
+        <div class="payment-amount" style="display:flex; justify-content:space-between; margin-top:10px; font-size:13px;">
+          <span data-bn="পেমেন্টের পরিমাণ" style="color:#64748b;">Payment Amount</span>
+          <strong style="color:#0f172a;">৳99</strong>
         </div>
       </div>
 
@@ -318,11 +321,11 @@
           <label data-bn="ট্রানজেকশন আইডি (TrxID)">Transaction ID</label>
           <input type="text" id="transactionId" placeholder="Enter transaction ID" required>
         </div>
-        <button class="submit-payment primary-btn" type="submit" style="width:100%; padding:14px; font-size:16px; margin-top:15px; border-radius:8px; font-weight:bold;" data-bn="পেমেন্ট সাবমিট করুন <span>↗</span>">Submit Payment <span>↗</span></button>
+        <button class="submit-payment primary-btn" type="submit" style="width:100%; padding:12px; font-size:15px; margin-top:15px; border-radius:8px; font-weight:600;" data-bn="পেমেন্ট সাবমিট করুন <span>↗</span>">Submit Payment <span>↗</span></button>
       </form>
 
       <div style="margin-top: 15px; text-align: center;">
-        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20submitted%20my%20payment%20for%20Canva%20Access." target="_blank" style="display:inline-block; background:#16a34a; color:#fff; font-weight:bold; padding:10px 15px; border-radius:8px; text-decoration:none; font-size:14px; box-shadow:0 4px 10px rgba(22,163,74,0.3);" data-bn="💬 পেমেন্ট করে WhatsApp-এ মেসেজ দিন">
+        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20submitted%20my%20payment%20for%20Canva%20Access." target="_blank" style="display:inline-block; background:#16a34a; color:#fff; font-weight:600; padding:10px 15px; border-radius:8px; text-decoration:none; font-size:13px;" data-bn="💬 পেমেন্ট করে WhatsApp-এ মেসেজ দিন">
           💬 Message on WhatsApp
         </a>
       </div>
@@ -334,10 +337,10 @@
   <!-- AOS Animation Script -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true, offset: 50 });
+    AOS.init({ duration: 700, once: true, offset: 30 });
   </script>
 
-  <!-- 🌟 Custom Language Toggle Logic 🌟 -->
+  <!-- Custom Language Toggle Logic -->
   <script>
     const langToggleBtn = document.getElementById('langToggle');
     const translatableElements = document.querySelectorAll('[data-bn]');
@@ -420,28 +423,7 @@
         alert(currentLang === 'bn' ? "নাম্বার কপি হয়েছে!" : "Number copied!");
     });
   </script>
-    <!-- URL থেকে #how সরানো এবং স্মুথ স্ক্রলিং করার কোড -->
-  <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault(); // লিংকে # আসা বন্ধ করবে
-        
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-          // সেকশনটিতে স্মুথলি স্ক্রল করবে
-          targetSection.scrollIntoView({
-            behavior: 'smooth'
-          });
-          
-          // ব্রাউজারের লিংক একদম ক্লিন রাখবে
-          history.replaceState(null, null, window.location.pathname);
-        }
-      });
-    });
-  </script>
-
+  
   <script type="module" src="script.js"></script>
 
 </body>
