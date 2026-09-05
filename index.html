@@ -9,79 +9,101 @@
 
   <meta name="description" content="Get Canva Pro access at an affordable price.">
 
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- ==========================================
-       🌟 LIGHT THEME CSS 🌟
+       🌟 PURE WHITE THEME CSS 🌟
        ========================================== -->
   <style>
-    body { background-color: #f8fafc !important; color: #1e293b !important; font-family: 'Inter', 'Noto Sans Bengali', sans-serif; }
-    .bg-glow { opacity: 0.05 !important; filter: invert(1); } 
+    /* Global White Theme Settings */
+    body { background-color: #ffffff !important; color: #333333 !important; font-family: 'Inter', 'Hind Siliguri', sans-serif; margin: 0; padding: 0; }
     
-    .navbar { background: rgba(255, 255, 255, 0.95) !important; border-bottom: 1px solid #e2e8f0 !important; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-    .navbar a { color: #475569 !important; font-weight: 500; }
+    /* Navbar */
+    .navbar { background-color: rgba(255, 255, 255, 0.98) !important; border-bottom: 1px solid #f0f0f0 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important; backdrop-filter: blur(10px); }
+    .navbar a { color: #555555 !important; font-weight: 600; }
     .navbar a:hover { color: #2563eb !important; }
-    .logo { color: #0f172a !important; }
+    .logo { color: #111111 !important; }
     .logo span { color: #2563eb !important; }
-    .login-btn { background: #2563eb !important; color: #ffffff !important; border: none !important; }
+    .login-btn { background: #2563eb !important; color: #ffffff !important; border: none !important; transition: all 0.3s ease; }
+    .login-btn:hover { background: #1d4ed8 !important; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
     
-    h1, h2, h3 { color: #0f172a !important; }
-    p { color: #64748b !important; }
+    /* Typography Overrides */
+    h1, h2, h3, h4 { color: #111111 !important; }
+    p, span:not(.check):not(.logo-icon), small { color: #555555 !important; }
     
+    /* Cards & Containers */
     .promo-card, .feature-card, .step, .pricing-card, .faq-item {
       background: #ffffff !important;
-      border: 1px solid #e2e8f0 !important;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
+      border: 1px solid #eaeaea !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04) !important;
+      border-radius: 16px !important;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .promo-card h2, .pricing-card h2 { color: #0f172a !important; }
+    .promo-card:hover, .feature-card:hover, .step:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+    }
     
-    .primary-btn { background: #2563eb !important; color: #ffffff !important; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2) !important; }
-    .secondary-btn { background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important; }
+    /* Buttons */
+    .primary-btn { background: #2563eb !important; color: #ffffff !important; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important; transition: all 0.3s ease; border: none; }
+    .primary-btn:hover { background: #1d4ed8 !important; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4) !important; }
+    .secondary-btn { background: #ffffff !important; color: #111111 !important; border: 1px solid #cccccc !important; transition: all 0.3s ease; }
+    .secondary-btn:hover { background: #f8f9fa !important; border-color: #999999 !important; }
     
-    .modal-overlay { background: rgba(15, 23, 42, 0.6) !important; backdrop-filter: blur(4px); }
-    .payment-modal, .login-modal { background: #ffffff !important; color: #0f172a !important; border: none !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25) !important; }
+    /* Modal Theme */
+    .modal-overlay { background: rgba(0, 0, 0, 0.5) !important; backdrop-filter: blur(5px); }
+    .payment-modal, .login-modal { background: #ffffff !important; border: none !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3) !important; border-radius: 20px; }
+    .modal-header h2 { color: #111111 !important; }
     
-    .payment-method { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; color: #1e293b !important; }
-    .payment-method.active { border-color: #2563eb !important; background: #eff6ff !important; }
-    .payment-number strong { color: #2563eb !important; }
+    /* Form & Payment Elements */
+    .payment-method { background: #ffffff !important; border: 1px solid #dddddd !important; color: #333333 !important; transition: all 0.2s ease; }
+    .payment-method:hover { border-color: #2563eb !important; }
+    .payment-method.active { border-color: #2563eb !important; background: #f0f7ff !important; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1); }
+    .payment-method strong { color: #111111 !important; }
     
-    .form-group label { color: #475569 !important; font-weight: 600; }
+    .bkash-instructions { background: #fafafa !important; border: 1px solid #eeeeee !important; border-radius: 12px; }
+    .payment-number { background: #ffffff !important; border: 1.5px dashed #bbbbbb !important; }
+    .payment-number strong { color: #2563eb !important; font-size: 1.2rem; }
+    
+    .form-group label { color: #444444 !important; font-weight: 600; }
     .form-group input, .form-group select {
-      background: #f8fafc !important;
-      border: 1px solid #cbd5e1 !important;
-      color: #0f172a !important;
+      background: #ffffff !important;
+      border: 1px solid #cccccc !important;
+      color: #111111 !important;
+      transition: border 0.3s ease;
     }
-    .form-group input:focus, .form-group select:focus { border-color: #2563eb !important; outline: none; }
+    .form-group input:focus, .form-group select:focus { border-color: #2563eb !important; box-shadow: 0 0 0 3px rgba(37,99,235,0.1) !important; outline: none; }
     
-    .footer { border-top: 1px solid #e2e8f0 !important; background: #ffffff !important; }
-    .footer p, .footer span, .footer a { color: #64748b !important; }
-
-    /* Custom Language Toggle Button */
+    /* Footer */
+    .footer { border-top: 1px solid #eeeeee !important; background: #fafafa !important; }
+    
+    /* Language Toggle Button */
     #langToggle {
-        background: #e2e8f0;
-        color: #0f172a;
-        border: 1px solid #cbd5e1;
-        padding: 6px 12px;
-        border-radius: 6px;
+        background: #ffffff;
+        color: #111111;
+        border: 1px solid #cccccc;
+        padding: 8px 16px;
+        border-radius: 8px;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.2s;
+        transition: all 0.2s ease;
         font-size: 14px;
+        font-family: 'Hind Siliguri', sans-serif;
     }
-    #langToggle:hover { background: #cbd5e1; }
+    #langToggle:hover { background: #f0f0f0; border-color: #999999; }
     .nav-actions { display: flex; align-items: center; gap: 15px; }
   </style>
 </head>
 
 <body>
 
-  <div class="bg-glow glow-one"></div>
-  <div class="bg-glow glow-two"></div>
-
   <!-- NAVBAR -->
-  <header class="navbar">
+  <header class="navbar" data-aos="fade-down" data-aos-duration="600">
     <a href="#" class="logo">
       <span class="logo-icon">✦</span>
       Canva<span data-bn="অ্যাক্সেস">Access</span>
@@ -94,7 +116,7 @@
     </nav>
 
     <div class="nav-actions">
-      <!-- 🌟 Custom Language Toggle Button 🌟 -->
+      <!-- Custom Language Toggle -->
       <button id="langToggle">🌐 বাংলা</button>
       <button class="login-btn" id="loginBtn" data-bn="লগইন">Login</button>
     </div>
@@ -103,12 +125,12 @@
   <!-- HERO -->
   <main>
     <section class="hero">
-      <div class="hero-content">
+      <div class="hero-content" data-aos="fade-right" data-aos-duration="800">
         <div class="badge" data-bn="<span class='pulse'></span> প্রিমিয়াম ডিজাইন অ্যাক্সেস">
           <span class="pulse"></span> Premium Design Access
         </div>
         
-        <h1 data-bn="আরও ডিজাইন করুন।<br><span>কম খরচে।</span>">Create more.<br><span>Pay less.</span></h1>
+        <h1 data-bn="আরও ডিজাইন করুন।<br><span>কম খরচে।</span>">Create more.<br><span style="color: #2563eb !important;">Pay less.</span></h1>
         
         <p data-bn="প্রিমিয়াম ডিজাইন টুলস, টেমপ্লেট এবং সৃজনশীলতার এক নতুন দুনিয়া আনলক করুন একদম সাশ্রয়ী মূল্যে।">
           Unlock a world of premium design tools, templates and creative possibilities.
@@ -123,28 +145,28 @@
 
     <!-- FEATURES -->
     <section class="section" id="features">
-      <div class="section-heading">
-        <span class="eyebrow" style="color:#2563eb;" data-bn="আপনি যা যা পাবেন">WHAT YOU GET</span>
-        <h2 data-bn="ডিজাইন করার<br><span>সবকিছু এখানেই।</span>">Everything you need<br>to <span>create.</span></h2>
+      <div class="section-heading" data-aos="fade-up">
+        <span class="eyebrow" style="color:#2563eb !important; font-weight: 700;" data-bn="আপনি যা যা পাবেন">WHAT YOU GET</span>
+        <h2 data-bn="ডিজাইন করার<br><span style='color:#2563eb !important;'>সবকিছু এখানেই।</span>">Everything you need<br><span style="color:#2563eb !important;">to create.</span></h2>
       </div>
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon" style="color:#2563eb;">✦</div>
+        <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+          <div class="feature-icon" style="color:#2563eb !important;">✦</div>
           <h3 data-bn="প্রিমিয়াম টেমপ্লেট">Premium Templates</h3>
           <p data-bn="প্রফেশনাল ডিজাইনারদের তৈরি হাজারো প্রিমিয়াম টেমপ্লেট ব্যবহার করুন।">Explore a wide range of professionally designed templates.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="color:#2563eb;">◈</div>
+        <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="feature-icon" style="color:#2563eb !important;">◈</div>
           <h3 data-bn="ব্যাকগ্রাউন্ড রিমুভার">Background Remover</h3>
           <p data-bn="এক ক্লিকেই যেকোনো ছবির ব্যাকগ্রাউন্ড রিমুভ করুন।">Remove image backgrounds with powerful design tools.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="color:#2563eb;">✧</div>
+        <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="feature-icon" style="color:#2563eb !important;">✧</div>
           <h3 data-bn="ম্যাজিক ডিজাইন">Magic Design</h3>
           <p data-bn="এআই (AI) টুলস ব্যবহার করে দ্রুত সুন্দর ডিজাইন তৈরি করুন।">Create beautiful designs faster with smart creative tools.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" style="color:#2563eb;">↗</div>
+        <div class="feature-card" data-aos="zoom-in" data-aos-delay="400">
+          <div class="feature-icon" style="color:#2563eb !important;">↗</div>
           <h3 data-bn="প্রিমিয়াম অ্যাসেট">Premium Assets</h3>
           <p data-bn="আপনার প্রজেক্টের জন্য প্রিমিয়াম ছবি, ফন্ট ও ভিডিও অ্যাক্সেস করুন।">Access creative resources for your projects.</p>
         </div>
@@ -153,23 +175,23 @@
 
     <!-- HOW IT WORKS -->
     <section class="section how-section" id="how">
-      <div class="section-heading">
-        <span class="eyebrow" style="color:#2563eb;" data-bn="সহজ প্রক্রিয়া">SIMPLE PROCESS</span>
-        <h2 data-bn="শুরু করুন মাত্র<br><span>তিনটি ধাপে।</span>">Get started in<br><span>three steps.</span></h2>
+      <div class="section-heading" data-aos="fade-up">
+        <span class="eyebrow" style="color:#2563eb !important; font-weight: 700;" data-bn="সহজ প্রক্রিয়া">SIMPLE PROCESS</span>
+        <h2 data-bn="শুরু করুন মাত্র<br><span style='color:#2563eb !important;'>তিনটি ধাপে।</span>">Get started in<br><span style="color:#2563eb !important;">three steps.</span></h2>
       </div>
       <div class="steps-grid">
-        <div class="step">
-          <div class="step-number">01</div>
+        <div class="step" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-number" style="background:#f0f7ff; color:#2563eb;">01</div>
           <h3 data-bn="অ্যাক্সেস বেছে নিন">Choose your access</h3>
           <p data-bn="আপনার পছন্দের প্ল্যান সিলেক্ট করে 'Get Access Now' এ ক্লিক করুন।">Select the plan and click Get Access Now.</p>
         </div>
-        <div class="step">
-          <div class="step-number">02</div>
+        <div class="step" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number" style="background:#f0f7ff; color:#2563eb;">02</div>
           <h3 data-bn="পেমেন্ট সম্পন্ন করুন">Complete payment</h3>
           <p data-bn="বিকাশ, নগদ বা রকেটের মাধ্যমে পেমেন্ট করে ট্রানজেকশন আইডি দিন।">Send money through bKash, Nagad or Rocket and submit your transaction ID.</p>
         </div>
-        <div class="step">
-          <div class="step-number">03</div>
+        <div class="step" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-number" style="background:#f0f7ff; color:#2563eb;">03</div>
           <h3 data-bn="ডিজাইন শুরু করুন">Start designing</h3>
           <p data-bn="অর্ডার ভেরিফাই হওয়ার পর আপনার ড্যাশবোর্ডে লিংক পেয়ে যাবেন।">After verification, receive your access or contact via WhatsApp.</p>
         </div>
@@ -177,16 +199,16 @@
     </section>
 
     <!-- PRICING -->
-    <section class="section pricing-section">
+    <section class="section pricing-section" data-aos="zoom-in-up">
       <div class="pricing-card">
         <div class="pricing-info">
-          <span class="eyebrow" style="color:#2563eb;" data-bn="সীমিত অফার">LIMITED OFFER</span>
+          <span class="eyebrow" style="color:#2563eb !important; font-weight: 700;" data-bn="সীমিত অফার">LIMITED OFFER</span>
           <h2 data-bn="কম খরচে<br>প্রিমিয়াম অ্যাক্সেস।">Premium access<br>for less.</h2>
         </div>
-        <div class="price-box">
+        <div class="price-box" style="background:#f8fafc; border: 1px solid #eaeaea;">
           <small data-bn="১ বছরের অ্যাক্সেস">1 YEAR ACCESS</small>
-          <div class="price" style="color:#0f172a;"><span>৳</span>99</div>
-          <div class="old-price" data-bn="রেগুলার প্রাইস <del>৳৫০০</del>">Regular price <del>৳500</del></div>
+          <div class="price"><span>৳</span>99</div>
+          <div class="old-price" data-bn="রেগুলার প্রাইস <del>৳৫০০</del>">Regular price <del>500</del></div>
           <button class="primary-btn" id="priceBuyBtn" data-bn="এখনই অ্যাক্সেস নিন <span>↗</span>">Get Access Now <span>↗</span></button>
         </div>
       </div>
@@ -212,12 +234,12 @@
   <!-- PAYMENT MODAL -->
   <div class="modal-overlay" id="paymentModal">
     <div class="payment-modal">
-      <button class="close-modal" id="closeModal" style="color:#0f172a;">×</button>
+      <button class="close-modal" id="closeModal" style="color:#111; font-size: 28px;">×</button>
       
       <div class="modal-header">
-        <span class="eyebrow" style="color:#2563eb;" data-bn="নিরাপদ চেকআউট">SECURE CHECKOUT</span>
+        <span class="eyebrow" style="color:#2563eb !important; font-weight:700;" data-bn="নিরাপদ চেকআউট">SECURE CHECKOUT</span>
         <h2 data-bn="অ্যাক্সেস বুঝে নিন।">Get your access.</h2>
-        <p style="color:#64748b;" data-bn="চালিয়ে যেতে পেমেন্ট সম্পন্ন করুন।">Complete your payment to continue.</p>
+        <p data-bn="চালিয়ে যেতে পেমেন্ট সম্পন্ন করুন।">Complete your payment to continue.</p>
       </div>
 
       <!-- PAYMENT METHODS -->
@@ -225,7 +247,7 @@
         <button class="payment-method active" data-method="bkash">
           <span class="method-logo bkash-logo">bK</span>
           <span><strong>bKash</strong></span>
-          <span class="check" style="color:#2563eb;">✓</span>
+          <span class="check" style="color:#2563eb !important;">✓</span>
         </button>
         <button class="payment-method" data-method="nagad">
           <span class="method-logo nagad-logo">N</span>
@@ -238,19 +260,19 @@
       </div>
 
       <!-- PAYMENT INSTRUCTIONS -->
-      <div class="bkash-instructions" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+      <div class="bkash-instructions">
         <div class="instruction-title">
           <span class="method-logo bkash-logo" id="activeMethodIcon">bK</span>
-          <strong id="activeMethodName" style="color:#0f172a;" data-bn="পেমেন্ট নাম্বার">Payment Number</strong>
+          <strong id="activeMethodName" data-bn="পেমেন্ট নাম্বার">Payment Number</strong>
         </div>
-        <p style="color:#64748b;" data-bn="নিচের নাম্বারে সেন্ড মানি (Send Money) করুন:">Send Money to the following number:</p>
-        <div class="payment-number" style="background:#ffffff; border: 1px dashed #cbd5e1;">
+        <p data-bn="নিচের নাম্বারে সেন্ড মানি (Send Money) করুন:">Send Money to the following number:</p>
+        <div class="payment-number">
           <strong id="paymentNumberDisplay">Loading...</strong>
-          <button id="copyNumber" style="color:#2563eb;" data-bn="কপি">Copy</button>
+          <button id="copyNumber" style="background:#f0f7ff; color:#2563eb; border:none; padding:5px 12px; border-radius:6px; font-weight:bold; cursor:pointer;" data-bn="কপি">Copy</button>
         </div>
         <div class="payment-amount">
-          <span style="color:#64748b;" data-bn="পেমেন্টের পরিমাণ">Payment Amount</span>
-          <strong style="color:#0f172a;">৳99</strong>
+          <span data-bn="পেমেন্টের পরিমাণ">Payment Amount</span>
+          <strong>৳99</strong>
         </div>
       </div>
 
@@ -279,11 +301,11 @@
           <label data-bn="ট্রানজেকশন আইডি (TrxID)">Transaction ID</label>
           <input type="text" id="transactionId" placeholder="Enter transaction ID" required>
         </div>
-        <button class="submit-payment" type="submit" data-bn="পেমেন্ট সাবমিট করুন <span>↗</span>">Submit Payment <span>↗</span></button>
+        <button class="submit-payment primary-btn" type="submit" style="width:100%; padding:14px; font-size:16px; margin-top:10px; border-radius:8px;" data-bn="পেমেন্ট সাবমিট করুন <span>↗</span>">Submit Payment <span>↗</span></button>
       </form>
 
-      <div class="mt-4 text-center" style="margin-top: 15px; text-align: center;">
-        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20submitted%20my%20payment%20for%20Canva%20Access." target="_blank" style="display:inline-block; background:#16a34a; color:#fff; font-weight:bold; padding:10px 15px; border-radius:8px; text-decoration:none; font-size:14px;" data-bn="💬 পেমেন্ট করে WhatsApp-এ মেসেজ দিন">
+      <div style="margin-top: 20px; text-align: center;">
+        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20submitted%20my%20payment%20for%20Canva%20Access." target="_blank" style="display:inline-block; background:#16a34a; color:#fff; font-weight:bold; padding:12px 20px; border-radius:8px; text-decoration:none; font-size:15px; box-shadow:0 4px 10px rgba(22,163,74,0.3);" data-bn="💬 পেমেন্ট করে WhatsApp-এ মেসেজ দিন">
           💬 Message on WhatsApp
         </a>
       </div>
@@ -292,13 +314,22 @@
 
   <div class="toast" id="toast"></div>
 
+  <!-- AOS Animation Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, // অ্যানিমেশনের সময়কাল
+      once: true, // স্ক্রল করলে একবারই অ্যানিমেশন হবে
+      offset: 50 // কিছুটা স্ক্রল করার পর অ্যানিমেশন শুরু হবে
+    });
+  </script>
+
   <!-- 🌟 Custom Language Toggle Logic 🌟 -->
   <script>
     const langToggleBtn = document.getElementById('langToggle');
     const translatableElements = document.querySelectorAll('[data-bn]');
     let currentLang = 'en';
 
-    // মূল ইংরেজি টেক্সটগুলো সেভ করে রাখা
     translatableElements.forEach(el => {
       if (!el.hasAttribute('data-en')) {
         el.setAttribute('data-en', el.innerHTML);
@@ -307,12 +338,10 @@
 
     langToggleBtn.addEventListener('click', () => {
       if (currentLang === 'en') {
-        // Switch to Bengali
         translatableElements.forEach(el => { el.innerHTML = el.getAttribute('data-bn'); });
         langToggleBtn.innerHTML = '🌐 English';
         currentLang = 'bn';
       } else {
-        // Switch to English
         translatableElements.forEach(el => { el.innerHTML = el.getAttribute('data-en'); });
         langToggleBtn.innerHTML = '🌐 বাংলা';
         currentLang = 'en';
