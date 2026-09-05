@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Canva Access — Premium Design Access</title>
-
   <meta name="description" content="Get Canva Pro access at an affordable price.">
 
   <!-- AOS Animation CSS -->
@@ -16,9 +15,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- ==========================================
-       🌟 PURE WHITE THEME CSS 🌟
-       ========================================== -->
   <style>
     /* Global White Theme Settings */
     body { background-color: #ffffff !important; color: #333333 !important; font-family: 'Inter', 'Hind Siliguri', sans-serif; margin: 0; padding: 0; }
@@ -32,7 +28,7 @@
     .login-btn { background: #2563eb !important; color: #ffffff !important; border: none !important; transition: all 0.3s ease; }
     .login-btn:hover { background: #1d4ed8 !important; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3); }
     
-    /* Typography Overrides */
+    /* Typography */
     h1, h2, h3, h4 { color: #111111 !important; }
     p, span:not(.check):not(.logo-icon), small { color: #555555 !important; }
     
@@ -50,32 +46,36 @@
     }
     
     /* Buttons */
-    .primary-btn { background: #2563eb !important; color: #ffffff !important; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important; transition: all 0.3s ease; border: none; }
+    .primary-btn { background: #2563eb !important; color: #ffffff !important; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25) !important; transition: all 0.3s ease; border: none; cursor: pointer; }
     .primary-btn:hover { background: #1d4ed8 !important; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4) !important; }
     .secondary-btn { background: #ffffff !important; color: #111111 !important; border: 1px solid #cccccc !important; transition: all 0.3s ease; }
     .secondary-btn:hover { background: #f8f9fa !important; border-color: #999999 !important; }
     
     /* Modal Theme */
     .modal-overlay { background: rgba(0, 0, 0, 0.5) !important; backdrop-filter: blur(5px); }
-    .payment-modal, .login-modal { background: #ffffff !important; border: none !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3) !important; border-radius: 20px; }
-    .modal-header h2 { color: #111111 !important; }
+    .payment-modal, .login-modal { background: #ffffff !important; border: none !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3) !important; border-radius: 20px; padding: 25px; max-width: 450px; margin: auto; }
+    .modal-header h2 { color: #111111 !important; margin-bottom: 5px; }
     
     /* Form & Payment Elements */
-    .payment-method { background: #ffffff !important; border: 1px solid #dddddd !important; color: #333333 !important; transition: all 0.2s ease; }
+    .payment-method { background: #ffffff !important; border: 1px solid #dddddd !important; color: #333333 !important; transition: all 0.2s ease; border-radius: 8px; padding: 10px; cursor: pointer; }
     .payment-method:hover { border-color: #2563eb !important; }
     .payment-method.active { border-color: #2563eb !important; background: #f0f7ff !important; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1); }
     .payment-method strong { color: #111111 !important; }
     
-    .bkash-instructions { background: #fafafa !important; border: 1px solid #eeeeee !important; border-radius: 12px; }
-    .payment-number { background: #ffffff !important; border: 1.5px dashed #bbbbbb !important; }
+    .bkash-instructions { background: #fafafa !important; border: 1px solid #eeeeee !important; border-radius: 12px; padding: 15px; margin-top: 15px; }
+    .payment-number { background: #ffffff !important; border: 1.5px dashed #bbbbbb !important; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .payment-number strong { color: #2563eb !important; font-size: 1.2rem; }
     
-    .form-group label { color: #444444 !important; font-weight: 600; }
+    .form-group { margin-top: 15px; text-align: left; }
+    .form-group label { color: #444444 !important; font-weight: 600; display: block; margin-bottom: 5px; font-size: 14px; }
     .form-group input, .form-group select {
       background: #ffffff !important;
       border: 1px solid #cccccc !important;
       color: #111111 !important;
       transition: border 0.3s ease;
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
     }
     .form-group input:focus, .form-group select:focus { border-color: #2563eb !important; box-shadow: 0 0 0 3px rgba(37,99,235,0.1) !important; outline: none; }
     
@@ -108,16 +108,15 @@
       <span class="logo-icon">✦</span>
       Canva<span data-bn="অ্যাক্সেস">Access</span>
     </a>
-
     <nav>
       <a href="#features" data-bn="ফিচারসমূহ">Features</a>
       <a href="#how" data-bn="কীভাবে কাজ করে">How it works</a>
       <a href="#faq" data-bn="সাধারণ জিজ্ঞাসা">FAQ</a>
     </nav>
-
     <div class="nav-actions">
       <!-- Custom Language Toggle -->
       <button id="langToggle">🌐 বাংলা</button>
+      <!-- Login Button -->
       <button class="login-btn" id="loginBtn" data-bn="লগইন">Login</button>
     </div>
   </header>
@@ -129,13 +128,10 @@
         <div class="badge" data-bn="<span class='pulse'></span> প্রিমিয়াম ডিজাইন অ্যাক্সেস">
           <span class="pulse"></span> Premium Design Access
         </div>
-        
         <h1 data-bn="আরও ডিজাইন করুন।<br><span>কম খরচে।</span>">Create more.<br><span style="color: #2563eb !important;">Pay less.</span></h1>
-        
         <p data-bn="প্রিমিয়াম ডিজাইন টুলস, টেমপ্লেট এবং সৃজনশীলতার এক নতুন দুনিয়া আনলক করুন একদম সাশ্রয়ী মূল্যে।">
           Unlock a world of premium design tools, templates and creative possibilities.
         </p>
-        
         <div class="hero-buttons">
           <button class="primary-btn" id="buyBtn" data-bn="এখনই অ্যাক্সেস নিন <span>↗</span>">Get Access Now <span>↗</span></button>
           <a href="#how" class="secondary-btn" data-bn="কীভাবে কাজ করে <span>↓</span>">How it works <span>↓</span></a>
@@ -231,29 +227,50 @@
     </footer>
   </main>
 
+
+  <!-- 🌟 LOGIN MODAL (এই অংশটুকু আগের কোডে বাদ পড়েছিল) 🌟 -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="login-modal">
+      <button class="close-modal" id="closeLogin" style="color:#111; font-size: 28px; background:none; border:none; cursor:pointer; position:absolute; right:15px; top:15px;">×</button>
+      
+      <div class="modal-header" style="text-align: center; margin-bottom: 20px;">
+        <span class="eyebrow" style="color:#2563eb !important; font-weight:700; display:block; margin-bottom:5px;" data-bn="স্বাগতম">WELCOME BACK</span>
+        <h2 data-bn="লগইন করুন।">Sign in to continue.</h2>
+        <p style="color:#64748b; font-size:14px;" data-bn="চালিয়ে যেতে আপনার গুগল একাউন্ট ব্যবহার করুন।">Use your Google account to sign in.</p>
+      </div>
+
+      <button class="primary-btn" id="googleLogin" style="width:100%; padding:14px; font-size:16px; border-radius:8px; font-weight:bold; display:flex; justify-content:center; align-items:center; gap:10px;">
+        <span style="background:#fff; color:#2563eb; padding:2px 8px; border-radius:4px; font-weight:bold;">G</span> 
+        <span data-bn="গুগল দিয়ে লগইন করুন">Continue with Google</span>
+      </button>
+
+      <div id="userInfo" style="margin-top: 15px; text-align: center;"></div>
+    </div>
+  </div>
+
+
   <!-- PAYMENT MODAL -->
   <div class="modal-overlay" id="paymentModal">
-    <div class="payment-modal">
-      <button class="close-modal" id="closeModal" style="color:#111; font-size: 28px;">×</button>
+    <div class="payment-modal" style="max-height: 90vh; overflow-y: auto;">
+      <button class="close-modal" id="closeModal" style="color:#111; font-size: 28px; background:none; border:none; cursor:pointer; position:absolute; right:15px; top:15px;">×</button>
       
-      <div class="modal-header">
-        <span class="eyebrow" style="color:#2563eb !important; font-weight:700;" data-bn="নিরাপদ চেকআউট">SECURE CHECKOUT</span>
+      <div class="modal-header" style="margin-bottom: 15px;">
+        <span class="eyebrow" style="color:#2563eb !important; font-weight:700; display:block; margin-bottom:5px;" data-bn="নিরাপদ চেকআউট">SECURE CHECKOUT</span>
         <h2 data-bn="অ্যাক্সেস বুঝে নিন।">Get your access.</h2>
-        <p data-bn="চালিয়ে যেতে পেমেন্ট সম্পন্ন করুন।">Complete your payment to continue.</p>
+        <p style="color:#64748b; font-size: 14px;" data-bn="চালিয়ে যেতে পেমেন্ট সম্পন্ন করুন।">Complete your payment to continue.</p>
       </div>
 
       <!-- PAYMENT METHODS -->
-      <div class="payment-methods">
-        <button class="payment-method active" data-method="bkash">
+      <div class="payment-methods" style="display:flex; gap:10px; margin-bottom:15px;">
+        <button class="payment-method active" data-method="bkash" style="flex:1;">
           <span class="method-logo bkash-logo">bK</span>
           <span><strong>bKash</strong></span>
-          <span class="check" style="color:#2563eb !important;">✓</span>
         </button>
-        <button class="payment-method" data-method="nagad">
+        <button class="payment-method" data-method="nagad" style="flex:1;">
           <span class="method-logo nagad-logo">N</span>
           <span><strong>Nagad</strong></span>
         </button>
-        <button class="payment-method" data-method="rocket">
+        <button class="payment-method" data-method="rocket" style="flex:1;">
           <span class="method-logo rocket-logo">R</span>
           <span><strong>Rocket</strong></span>
         </button>
@@ -261,16 +278,16 @@
 
       <!-- PAYMENT INSTRUCTIONS -->
       <div class="bkash-instructions">
-        <div class="instruction-title">
+        <div class="instruction-title" style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
           <span class="method-logo bkash-logo" id="activeMethodIcon">bK</span>
           <strong id="activeMethodName" data-bn="পেমেন্ট নাম্বার">Payment Number</strong>
         </div>
-        <p data-bn="নিচের নাম্বারে সেন্ড মানি (Send Money) করুন:">Send Money to the following number:</p>
+        <p style="font-size:14px; margin-bottom:10px;" data-bn="নিচের নাম্বারে সেন্ড মানি (Send Money) করুন:">Send Money to the following number:</p>
         <div class="payment-number">
           <strong id="paymentNumberDisplay">Loading...</strong>
           <button id="copyNumber" style="background:#f0f7ff; color:#2563eb; border:none; padding:5px 12px; border-radius:6px; font-weight:bold; cursor:pointer;" data-bn="কপি">Copy</button>
         </div>
-        <div class="payment-amount">
+        <div class="payment-amount" style="display:flex; justify-content:space-between; margin-top:10px; font-size:14px;">
           <span data-bn="পেমেন্টের পরিমাণ">Payment Amount</span>
           <strong>৳99</strong>
         </div>
@@ -301,11 +318,11 @@
           <label data-bn="ট্রানজেকশন আইডি (TrxID)">Transaction ID</label>
           <input type="text" id="transactionId" placeholder="Enter transaction ID" required>
         </div>
-        <button class="submit-payment primary-btn" type="submit" style="width:100%; padding:14px; font-size:16px; margin-top:10px; border-radius:8px;" data-bn="পেমেন্ট সাবমিট করুন <span>↗</span>">Submit Payment <span>↗</span></button>
+        <button class="submit-payment primary-btn" type="submit" style="width:100%; padding:14px; font-size:16px; margin-top:15px; border-radius:8px; font-weight:bold;" data-bn="পেমেন্ট সাবমিট করুন <span>↗</span>">Submit Payment <span>↗</span></button>
       </form>
 
-      <div style="margin-top: 20px; text-align: center;">
-        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20submitted%20my%20payment%20for%20Canva%20Access." target="_blank" style="display:inline-block; background:#16a34a; color:#fff; font-weight:bold; padding:12px 20px; border-radius:8px; text-decoration:none; font-size:15px; box-shadow:0 4px 10px rgba(22,163,74,0.3);" data-bn="💬 পেমেন্ট করে WhatsApp-এ মেসেজ দিন">
+      <div style="margin-top: 15px; text-align: center;">
+        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20submitted%20my%20payment%20for%20Canva%20Access." target="_blank" style="display:inline-block; background:#16a34a; color:#fff; font-weight:bold; padding:10px 15px; border-radius:8px; text-decoration:none; font-size:14px; box-shadow:0 4px 10px rgba(22,163,74,0.3);" data-bn="💬 পেমেন্ট করে WhatsApp-এ মেসেজ দিন">
           💬 Message on WhatsApp
         </a>
       </div>
@@ -317,11 +334,7 @@
   <!-- AOS Animation Script -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 800, // অ্যানিমেশনের সময়কাল
-      once: true, // স্ক্রল করলে একবারই অ্যানিমেশন হবে
-      offset: 50 // কিছুটা স্ক্রল করার পর অ্যানিমেশন শুরু হবে
-    });
+    AOS.init({ duration: 800, once: true, offset: 50 });
   </script>
 
   <!-- 🌟 Custom Language Toggle Logic 🌟 -->
