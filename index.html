@@ -420,7 +420,28 @@
         alert(currentLang === 'bn' ? "নাম্বার কপি হয়েছে!" : "Number copied!");
     });
   </script>
-  
+    <!-- URL থেকে #how সরানো এবং স্মুথ স্ক্রলিং করার কোড -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault(); // লিংকে # আসা বন্ধ করবে
+        
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+          // সেকশনটিতে স্মুথলি স্ক্রল করবে
+          targetSection.scrollIntoView({
+            behavior: 'smooth'
+          });
+          
+          // ব্রাউজারের লিংক একদম ক্লিন রাখবে
+          history.replaceState(null, null, window.location.pathname);
+        }
+      });
+    });
+  </script>
+
   <script type="module" src="script.js"></script>
 
 </body>
