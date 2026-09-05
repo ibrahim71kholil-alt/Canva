@@ -7,28 +7,85 @@
 
   <title>Canva Access — Premium Design Access</title>
 
-  <meta name="description"
-    content="Get Canva Pro access at an affordable price.">
+  <meta name="description" content="Get Canva Pro access at an affordable price.">
 
   <link rel="stylesheet" href="style.css">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <!-- ==========================================
+       🌟 LIGHT THEME & CLEAN DESIGN CSS 🌟
+       ডার্ক থিম মুছে প্রফেশনাল লাইট থিম করার সিএসএস
+       ========================================== -->
+  <style>
+    body { background-color: #f8fafc !important; color: #1e293b !important; }
+    .bg-glow { opacity: 0.05 !important; filter: invert(1); } 
+    
+    .navbar { background: rgba(255, 255, 255, 0.95) !important; border-bottom: 1px solid #e2e8f0 !important; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .navbar a { color: #475569 !important; font-weight: 500; }
+    .navbar a:hover { color: #2563eb !important; }
+    .logo { color: #0f172a !important; }
+    .logo span { color: #2563eb !important; }
+    .login-btn { background: #2563eb !important; color: #ffffff !important; border: none !important; }
+    
+    h1, h2, h3 { color: #0f172a !important; }
+    p { color: #64748b !important; }
+    
+    .promo-card, .feature-card, .step, .pricing-card, .faq-item {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05) !important;
+    }
+    .promo-card h2, .pricing-card h2 { color: #0f172a !important; }
+    
+    .primary-btn { background: #2563eb !important; color: #ffffff !important; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2) !important; }
+    .secondary-btn { background: #ffffff !important; color: #0f172a !important; border: 1px solid #cbd5e1 !important; }
+    
+    /* Modal Light Theme */
+    .modal-overlay { background: rgba(15, 23, 42, 0.6) !important; backdrop-filter: blur(4px); }
+    .payment-modal, .login-modal { background: #ffffff !important; color: #0f172a !important; border: none !important; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25) !important; }
+    
+    .payment-method { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; color: #1e293b !important; }
+    .payment-method.active { border-color: #2563eb !important; background: #eff6ff !important; }
+    .payment-number strong { color: #2563eb !important; }
+    
+    .form-group label { color: #475569 !important; font-weight: 600; }
+    .form-group input, .form-group select {
+      background: #f8fafc !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #0f172a !important;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: #2563eb !important; outline: none; }
+    
+    .footer { border-top: 1px solid #e2e8f0 !important; background: #ffffff !important; }
+    .footer p, .footer span, .footer a { color: #64748b !important; }
+
+    /* Google Translate Widget Styling */
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    #google_translate_element select {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      color: #0f172a;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      outline: none;
+    }
+    .goog-te-gadget { color: transparent !important; font-size: 0 !important; }
+    .goog-logo-link, .goog-te-banner-frame { display: none !important; }
+    body { top: 0 !important; }
+  </style>
 
 </head>
 
 <body>
 
-  <!-- Background -->
   <div class="bg-glow glow-one"></div>
   <div class="bg-glow glow-two"></div>
 
-
   <!-- NAVBAR -->
   <header class="navbar">
-
     <a href="#" class="logo">
       <span class="logo-icon">✦</span>
       Canva<span>Access</span>
@@ -41,559 +98,191 @@
     </nav>
 
     <div class="nav-actions">
-
-      <button class="theme-btn" id="themeBtn">
-        ☀️
-      </button>
-
-      <button class="login-btn" id="loginBtn">
-        Login
-      </button>
-
+      <!-- 🌟 Language Switcher (Google Translate) -->
+      <div id="google_translate_element"></div>
+      
+      <button class="login-btn" id="loginBtn">Login</button>
     </div>
-
   </header>
-
 
   <!-- HERO -->
   <main>
-
     <section class="hero">
-
       <div class="hero-content">
-
         <div class="badge">
           <span class="pulse"></span>
           Premium Design Access
         </div>
-
-        <h1>
-          Create more.<br>
-          <span>Pay less.</span>
-        </h1>
-
-        <p>
-          Unlock a world of premium design tools,
-          templates and creative possibilities.
-        </p>
-
+        <h1>Create more.<br><span>Pay less.</span></h1>
+        <p>Unlock a world of premium design tools, templates and creative possibilities.</p>
         <div class="hero-buttons">
-
-          <button class="primary-btn" id="buyBtn">
-            Get Access Now
-            <span>↗</span>
-          </button>
-
-          <a href="#how" class="secondary-btn">
-            How it works
-            <span>↓</span>
-          </a>
-
+          <button class="primary-btn" id="buyBtn">Get Access Now <span>↗</span></button>
+          <a href="#how" class="secondary-btn">How it works <span>↓</span></a>
         </div>
-
-        <div class="hero-trust">
-
-          <div class="avatars">
-            <span>R</span>
-            <span>A</span>
-            <span>S</span>
-            <span>+</span>
-          </div>
-
-          <div>
-            <strong>Trusted by creators</strong>
-            <small>Simple. Fast. Affordable.</small>
-          </div>
-
-        </div>
-
       </div>
-
-
-      <!-- 3D PROMO CARD -->
-      <div class="hero-visual">
-
-        <div class="visual-glow"></div>
-
-        <div class="promo-card">
-
-          <div class="promo-top">
-            <span>CANVA</span>
-            <span>✦</span>
-          </div>
-
-          <div class="promo-center">
-
-            <small>PREMIUM ACCESS</small>
-
-            <h2>
-              Design<br>
-              <em>without limits.</em>
-            </h2>
-
-            <div class="promo-line"></div>
-
-            <p>
-              Your creativity.<br>
-              Your possibilities.
-            </p>
-
-          </div>
-
-          <div class="promo-bottom">
-            <span>01 YEAR ACCESS</span>
-            <span>✦</span>
-          </div>
-
-        </div>
-
-        <div class="floating-tag tag-one">
-          ✦ Premium Templates
-        </div>
-
-        <div class="floating-tag tag-two">
-          ⚡ Instant Access
-        </div>
-
-      </div>
-
     </section>
-
-
-    <!-- TRUST -->
-    <section class="trust-section">
-
-      <div class="trust-item">
-        <span>✦</span>
-        <div>
-          <strong>Premium Access</strong>
-          <small>Creative tools</small>
-        </div>
-      </div>
-
-      <div class="trust-item">
-        <span>⚡</span>
-        <div>
-          <strong>Fast Delivery</strong>
-          <small>Quick processing</small>
-        </div>
-      </div>
-
-      <div class="trust-item">
-        <span>↗</span>
-        <div>
-          <strong>24/7 Support</strong>
-          <small>We're here to help</small>
-        </div>
-      </div>
-
-    </section>
-
 
     <!-- FEATURES -->
     <section class="section" id="features">
-
       <div class="section-heading">
-
-        <span class="eyebrow">WHAT YOU GET</span>
-
-        <h2>
-          Everything you need<br>
-          to <span>create.</span>
-        </h2>
-
-        <p>
-          Powerful creative features designed
-          to make your work easier.
-        </p>
-
+        <span class="eyebrow" style="color:#2563eb;">WHAT YOU GET</span>
+        <h2>Everything you need<br>to <span>create.</span></h2>
+        <p>Powerful creative features designed to make your work easier.</p>
       </div>
-
-
       <div class="features-grid">
-
         <div class="feature-card">
-          <div class="feature-icon">✦</div>
+          <div class="feature-icon" style="color:#2563eb;">✦</div>
           <h3>Premium Templates</h3>
           <p>Explore a wide range of professionally designed templates.</p>
-          <span class="feature-number">01</span>
         </div>
-
         <div class="feature-card">
-          <div class="feature-icon">◈</div>
+          <div class="feature-icon" style="color:#2563eb;">◈</div>
           <h3>Background Remover</h3>
           <p>Remove image backgrounds with powerful design tools.</p>
-          <span class="feature-number">02</span>
         </div>
-
         <div class="feature-card">
-          <div class="feature-icon">✧</div>
+          <div class="feature-icon" style="color:#2563eb;">✧</div>
           <h3>Magic Design</h3>
           <p>Create beautiful designs faster with smart creative tools.</p>
-          <span class="feature-number">03</span>
         </div>
-
         <div class="feature-card">
-          <div class="feature-icon">↗</div>
+          <div class="feature-icon" style="color:#2563eb;">↗</div>
           <h3>Premium Assets</h3>
           <p>Access creative resources for your projects.</p>
-          <span class="feature-number">04</span>
         </div>
-
       </div>
-
     </section>
-
-
-    <!-- HOW IT WORKS -->
-    <section class="section how-section" id="how">
-
-      <div class="section-heading">
-
-        <span class="eyebrow">SIMPLE PROCESS</span>
-
-        <h2>
-          Get started in<br>
-          <span>three steps.</span>
-        </h2>
-
-      </div>
-
-
-      <div class="steps-grid">
-
-        <div class="step">
-          <div class="step-number">01</div>
-          <h3>Choose your access</h3>
-          <p>Select the plan and click Get Access Now.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">02</div>
-          <h3>Complete payment</h3>
-          <p>Send money through bKash, Nagad or Rocket and submit your transaction ID.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">03</div>
-          <h3>Start designing</h3>
-          <p>After verification, receive your access or contact via WhatsApp.</p>
-        </div>
-
-      </div>
-
-    </section>
-
 
     <!-- PRICING -->
     <section class="section pricing-section">
-
       <div class="pricing-card">
-
         <div class="pricing-info">
-
-          <span class="eyebrow">LIMITED OFFER</span>
-
+          <span class="eyebrow" style="color:#2563eb;">LIMITED OFFER</span>
           <h2>Premium access<br>for less.</h2>
-
-          <p>
-            Get access to premium creative
-            tools at an affordable price.
-          </p>
-
+          <p>Get access to premium creative tools at an affordable price.</p>
         </div>
-
         <div class="price-box">
-
           <small>1 YEAR ACCESS</small>
-
-          <div class="price">
-            <span>৳</span>99
-          </div>
-
-          <div class="old-price">
-            Regular price <del>৳500</del>
-          </div>
-
-          <button class="primary-btn" id="priceBuyBtn">
-            Get Access Now <span>↗</span>
-          </button>
-
+          <div class="price" style="color:#0f172a;"><span>৳</span>99</div>
+          <div class="old-price">Regular price <del>৳500</del></div>
+          <button class="primary-btn" id="priceBuyBtn">Get Access Now <span>↗</span></button>
         </div>
-
       </div>
-
     </section>
-
-
-    <!-- FAQ -->
-    <section class="section faq-section" id="faq">
-
-      <div class="section-heading">
-
-        <span class="eyebrow">QUESTIONS</span>
-
-        <h2>
-          Frequently asked<br>
-          <span>questions.</span>
-        </h2>
-
-      </div>
-
-
-      <div class="faq-list">
-
-        <div class="faq-item">
-          <button class="faq-question">
-            How do I purchase?
-            <span>+</span>
-          </button>
-          <div class="faq-answer">
-            Click Get Access Now, select payment method,
-            send ৳99 and submit your transaction ID.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            Which payment methods are available?
-            <span>+</span>
-          </button>
-          <div class="faq-answer">
-            bKash, Nagad and Rocket are available. Numbers can be found in checkout.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            How long does delivery take?
-            <span>+</span>
-          </button>
-          <div class="faq-answer">
-            After payment verification,
-            access instructions will be provided.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            How can I contact support?
-            <span>+</span>
-          </button>
-          <div class="faq-answer">
-            Contact us directly through WhatsApp or Facebook.
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
 
     <!-- FOOTER -->
     <footer class="footer">
-
       <div class="footer-brand">
-
-        <a href="#" class="logo">
-          <span class="logo-icon">✦</span>
-          Canva<span>Access</span>
-        </a>
-
-        <p>
-          Simple access to creative possibilities.
-        </p>
-
+        <a href="#" class="logo"><span class="logo-icon">✦</span> Canva<span>Access</span></a>
+        <p>Simple access to creative possibilities.</p>
       </div>
-
-
       <div class="footer-links">
-
-        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20made%20a%20payment%20for%20Canva%20Access." target="_blank">
-          💬 Chat on WhatsApp
-        </a>
-
-        <a href="https://www.facebook.com/share/1D4vaUgp6V/"
-          target="_blank">
-          Facebook
-        </a>
-
+        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20made%20a%20payment%20for%20Canva%20Access." target="_blank">💬 Chat on WhatsApp</a>
+        <a href="https://www.facebook.com/share/1D4vaUgp6V/" target="_blank">Facebook</a>
       </div>
-
-
       <div class="footer-bottom">
         <span>© 2026 CanvaAccess</span>
         <span>Made for creators ✦</span>
       </div>
-
     </footer>
-
   </main>
-
 
   <!-- PAYMENT MODAL -->
   <div class="modal-overlay" id="paymentModal">
-
     <div class="payment-modal">
-
-      <button class="close-modal" id="closeModal">×</button>
-
+      <button class="close-modal" id="closeModal" style="color:#0f172a;">×</button>
+      
       <div class="modal-header">
-
-        <span class="eyebrow">SECURE CHECKOUT</span>
-
+        <span class="eyebrow" style="color:#2563eb;">SECURE CHECKOUT</span>
         <h2>Get your access.</h2>
-
-        <p>Complete your payment to continue.</p>
-
+        <p style="color:#64748b;">Complete your payment to continue.</p>
       </div>
-
 
       <!-- PAYMENT METHODS -->
       <div class="payment-methods">
-
         <button class="payment-method active" data-method="bkash">
           <span class="method-logo bkash-logo">bK</span>
-          <span>
-            <strong>bKash</strong>
-            <small>Active</small>
-          </span>
-          <span class="check">✓</span>
+          <span><strong>bKash</strong><small>Active</small></span>
+          <span class="check" style="color:#2563eb;">✓</span>
         </button>
-
-
         <button class="payment-method" data-method="nagad">
           <span class="method-logo nagad-logo">N</span>
-          <span>
-            <strong>Nagad</strong>
-            <small>Active</small>
-          </span>
+          <span><strong>Nagad</strong><small>Active</small></span>
         </button>
-
-
         <button class="payment-method" data-method="rocket">
           <span class="method-logo rocket-logo">R</span>
-          <span>
-            <strong>Rocket</strong>
-            <small>Active</small>
-          </span>
+          <span><strong>Rocket</strong><small>Active</small></span>
         </button>
-
       </div>
 
-
-      <!-- PAYMENT INSTRUCTIONS & LIVE NUMBERS -->
-      <div class="bkash-instructions">
-
+      <!-- PAYMENT INSTRUCTIONS -->
+      <div class="bkash-instructions" style="background: #f8fafc; border: 1px solid #e2e8f0;">
         <div class="instruction-title">
           <span class="method-logo bkash-logo" id="activeMethodIcon">bK</span>
-          <strong id="activeMethodName">Payment Number</strong>
+          <strong id="activeMethodName" style="color:#0f172a;">Payment Number</strong>
         </div>
-
-        <p id="instructionText">
-          Send Money to the following number:
-        </p>
-
-        <div class="payment-number">
-          <!-- ফায়ারবেস থেকে লাইভ নাম্বার আসার আইডি -->
-          <strong id="paymentNumberDisplay" class="text-[#00D4FF]">Loading...</strong>
-          <button id="copyNumber">Copy</button>
+        <p style="color:#64748b;">Send Money to the following number:</p>
+        <div class="payment-number" style="background:#ffffff; border: 1px dashed #cbd5e1;">
+          <strong id="paymentNumberDisplay">Loading...</strong>
+          <button id="copyNumber" style="color:#2563eb;">Copy</button>
         </div>
-
         <div class="payment-amount">
-          <span>Payment Amount</span>
-          <strong>৳99</strong>
+          <span style="color:#64748b;">Payment Amount</span>
+          <strong style="color:#0f172a;">৳99</strong>
         </div>
-
-        <div class="payment-note">
-          <strong>How to pay?</strong>
-          <p>
-            Open your mobile banking app → Send Money →
-            enter the number above → send ৳99 →
-            copy your Transaction ID.
-          </p>
-        </div>
-
       </div>
-
 
       <!-- ORDER FORM -->
       <form id="orderForm">
-
         <div class="form-group">
           <label>Your Name</label>
           <input type="text" id="customerName" placeholder="Enter your name" required>
         </div>
-
         <div class="form-group">
           <label>Phone Number</label>
           <input type="tel" id="customerPhone" placeholder="01XXXXXXXXX" required>
         </div>
-
         <div class="form-group">
           <label>Email Address</label>
           <input type="email" id="customerEmail" placeholder="your@email.com" required>
         </div>
-
+        <div class="form-group">
+          <label>How do you want Canva?</label>
+          <select id="deliveryType">
+            <option value="Invite Link">Canva Team Invite Link</option>
+            <option value="Direct Gmail">Direct Gmail Invite</option>
+          </select>
+        </div>
         <div class="form-group">
           <label>Transaction ID</label>
           <input type="text" id="transactionId" placeholder="Enter transaction ID" required>
         </div>
-
-        <button class="submit-payment" type="submit">
-          Submit Payment <span>↗</span>
-        </button>
-
+        <button class="submit-payment" type="submit">Submit Payment <span>↗</span></button>
       </form>
 
-
-      <!-- WHATSAPP SUPPORT IN MODAL -->
-      <div class="mt-4 text-center">
-        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20submitted%20my%20payment%20for%20Canva%20Access." target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl text-sm transition">
-          💬 পেমেন্ট করে WhatsApp-এ মেসেজ দিন
+      <div class="mt-4 text-center" style="margin-top: 15px; text-align: center;">
+        <a href="https://wa.me/8801766269848?text=Hello!%20I%20have%20submitted%20my%20payment%20for%20Canva%20Access." target="_blank" style="display:inline-block; background:#16a34a; color:#fff; font-weight:bold; padding:10px 15px; border-radius:8px; text-decoration:none; font-size:14px;">
+          💬 Message on WhatsApp
         </a>
       </div>
-
-
-      <div class="secure-note">
-        🔒 Your information is securely submitted.
-      </div>
-
     </div>
-
   </div>
 
-
-  <!-- LOGIN MODAL -->
-  <div class="modal-overlay" id="loginModal">
-
-    <div class="login-modal">
-
-      <button class="close-modal" id="closeLogin">×</button>
-
-      <span class="eyebrow">WELCOME BACK</span>
-
-      <h2>Sign in to continue.</h2>
-
-      <p>Use your Google account to sign in.</p>
-
-      <button class="google-btn" id="googleLogin">
-        <span>G</span>
-        Continue with Google
-      </button>
-
-      <div id="userInfo"></div>
-
-    </div>
-
-  </div>
-
-
-  <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
+  <!-- Google Translate Script -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,bn',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-  <!-- ফায়ারবেস থেকে লাইভ পেমেন্ট নাম্বার লোড করার স্ক্রিপ্ট -->
+  <!-- Firebase Scripts -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -609,7 +298,6 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-
     let paymentData = { bkash: "Loading...", nagad: "", rocket: "" };
 
     async function loadLiveNumbers() {
@@ -618,57 +306,31 @@
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 paymentData = docSnap.data();
-                // ডিফল্টভাবে বিকাশ নাম্বার শো করাবে
                 document.getElementById("paymentNumberDisplay").innerText = paymentData.bkash || "Not Set";
             }
-        } catch (error) {
-            console.error("Error loading numbers:", error);
-        }
+        } catch (error) { console.error(error); }
     }
-
     loadLiveNumbers();
 
-    // পেমেন্ট মেথড সুইচ করার লজিক (বিকাশ, নগদ, রকেট ক্লিক করলে নাম্বার চেঞ্জ হবে)
     const methods = document.querySelectorAll('.payment-method');
     methods.forEach(btn => {
         btn.addEventListener('click', () => {
             methods.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
             const method = btn.getAttribute('data-method');
             const displayEl = document.getElementById("paymentNumberDisplay");
-            const nameEl = document.getElementById("activeMethodName");
-            const iconEl = document.getElementById("activeMethodIcon");
-
-            if(method === 'bkash') {
-                displayEl.innerText = paymentData.bkash || "Not Set";
-                nameEl.innerText = "bKash Payment";
-                iconEl.innerText = "bK";
-                iconEl.className = "method-logo bkash-logo";
-            } else if(method === 'nagad') {
-                displayEl.innerText = paymentData.nagad || "Not Set";
-                nameEl.innerText = "Nagad Payment";
-                iconEl.innerText = "N";
-                iconEl.className = "method-logo nagad-logo";
-            } else if(method === 'rocket') {
-                displayEl.innerText = paymentData.rocket || "Not Set";
-                nameEl.innerText = "Rocket Payment";
-                iconEl.innerText = "R";
-                iconEl.className = "method-logo rocket-logo";
-            }
+            if(method === 'bkash') displayEl.innerText = paymentData.bkash || "Not Set";
+            else if(method === 'nagad') displayEl.innerText = paymentData.nagad || "Not Set";
+            else if(method === 'rocket') displayEl.innerText = paymentData.rocket || "Not Set";
         });
     });
 
-    // কপি বাটন ফাংশনালিটি
     document.getElementById("copyNumber").addEventListener("click", () => {
-        const numText = document.getElementById("paymentNumberDisplay").innerText;
-        navigator.clipboard.writeText(numText);
-        alert("Number copied: " + numText);
+        navigator.clipboard.writeText(document.getElementById("paymentNumberDisplay").innerText);
+        alert("Number copied!");
     });
   </script>
-
   <script type="module" src="script.js"></script>
 
 </body>
-
 </html>
